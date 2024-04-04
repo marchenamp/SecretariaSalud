@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Expediente clinico electronico</title>
+        <link rel="stylesheet" href="CSS/iniciosesion.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="logo-container">
+                <img src="IMG/2622355.png" alt="logo" class="logo">
+            </div>
+            <div class="title-container">
+                <h1>Expediente Clinico Electronico</h1>
+            </div>
+        </header>
+        <div class="body-styles">
+            <!-- Formulario de inicio de sesión -->
+            <div class="login-form">
+                <h2>Iniciar Sesión</h2>
+                <form action="menuMedico.html" method="POST">
+                    <label for="cedula">Cedula Profesional:</label>
+                    <input type="text" id="cedula" name="cedula" placeholder="Ingresa tu cedula profesional">
+
+                    <label for="clave">Clave:</label>
+                    <input type="password" id="clave" name="clave" placeholder="Ingresa tu clave" required>
+
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+        <div >
+            <a href="perfil.html"><button class="button">Soy paciente</button></a>
+        </div>  
+        <footer>
+            <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
+        </footer>
+    </body>
+
+</html>
+
