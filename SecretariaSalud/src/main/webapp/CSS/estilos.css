@@ -127,6 +127,7 @@ footer {
 .register-form input[type="date"],
 .register-form input[type="email"],
 .register-form input[type="tel"],
+textarea,
 select {
     width: 100%;
     padding: 10px;

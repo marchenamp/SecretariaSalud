@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 8 abr 2024, 22:21:43
+    Author     : magda
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
