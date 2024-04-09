@@ -26,14 +26,22 @@
         </header>
         <div class="body-styles">
             <!-- Formulario de inicio de sesión -->
+            <%
+                String advertencia = (String) request.getAttribute("txt-advertencia");
+                if (advertencia != null){
+            %>
+            <div class="alert alert-danger alert-dismissible text-center"><%=advertencia%></div>
+            <%
+            }
+            %>
             <div class="login-form">
                 <h2>INICIO DE SESIÓN</h2>
-                <form action="menuMedico.html" method="POST">
+                <form action="IniciarSesion" method="post">
                     <label for="cedula">Cédula Profesional:</label>
                     <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula profesional">
 
-                    <label for="clave">Clave:</label>
-                    <input type="password" id="clave" name="clave" placeholder="Ingrese su clave" required>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
 
                     <button type="submit">Ingresar</button>
                 </form>

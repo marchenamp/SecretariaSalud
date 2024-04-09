@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession objSesion=request.getSession(false);
+    String usuario=(String)objSesion.getAttribute("correo");
+    if(usuario == null){
+        usuario = "";
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,17 +22,35 @@
         <!-- Incluir Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="CSS/estilos.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+                integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+        crossorigin="anonymous"></script>
     </head>
 
     <body>
         <header>
             <div class="logo-container">
                 <img src="IMG/2622355.png" alt="logo" class="logo">
-            </div>
-            <div class="title-container">
                 <h1>Expediente Clínico</h1>
             </div>
+
+            <%
+                if (usuario != ""){
+            %>
+            <div class="dropdown">
+                <button class="dropbtn" id="btnUsuario">
+                    <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
+                    Usuario
+                </button>
+                <div class="dropdown-content">
+                    <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+            <%
+                }
+            %>
         </header>
+
         <div class="body-styles">
             <!-- Formulario de Registro de Paciente -->
             <div class="register-form">
@@ -136,91 +161,93 @@
 
                                 <label for="numeroContactoEmergencia">Teléfono:</label>
                                 <input type="tel" id="numeroContactoEmergencia" name="numeroContactoEmergencia" pattern="[0-9]{10}" placeholder="Ingrese el número telefónico del contacto de emergencia" required>
-                                <br><br>
+
                                 <button type="submit" id="form-submit" onclick="alerta()" class="btn">Registrar</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div> 
-        </div>
 
-        <footer>
-            <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
-        </footer>
+        </form>
+    </div>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // navigation click actions 
-                $('.scroll-link').on('click', function (event) {
-                    event.preventDefault();
-                    var sectionID = $(this).attr("data-id");
-                    scrollToID('#' + sectionID, 750);
-                });
-                // scroll to top action
-                $('.scroll-top').on('click', function (event) {
-                    event.preventDefault();
-                    $('html, body').animate({scrollTop: 0}, 'slow');
-                });
-                // mobile nav toggle
-                $('#nav-toggle').on('click', function (event) {
-                    event.preventDefault();
-                    $('#main-nav').toggleClass("open");
-                });
+    <footer>
+        <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
+    </footer>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // navigation click actions 
+            $('.scroll-link').on('click', function (event) {
+                event.preventDefault();
+                var sectionID = $(this).attr("data-id");
+                scrollToID('#' + sectionID, 750);
             });
-            // scroll function
-            function scrollToID(id, speed) {
-                var offSet = 0;
-                var targetOffset = $(id).offset().top - offSet;
-                var mainNav = $('#main-nav');
-                $('html,body').animate({scrollTop: targetOffset}, speed);
-                if (mainNav.hasClass("open")) {
-                    mainNav.css("height", "1px").removeClass("in").addClass("collapse");
-                    mainNav.removeClass("open");
-                }
+            // scroll to top action
+            $('.scroll-top').on('click', function (event) {
+                event.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 'slow');
+            });
+            // mobile nav toggle
+            $('#nav-toggle').on('click', function (event) {
+                event.preventDefault();
+                $('#main-nav').toggleClass("open");
+            });
+        });
+        // scroll function
+        function scrollToID(id, speed) {
+            var offSet = 0;
+            var targetOffset = $(id).offset().top - offSet;
+            var mainNav = $('#main-nav');
+            $('html,body').animate({scrollTop: targetOffset}, speed);
+            if (mainNav.hasClass("open")) {
+                mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+                mainNav.removeClass("open");
             }
-            if (typeof console === "undefined") {
-                console = {
-                    log: function () { }
-                };
-            }
+        }
+        if (typeof console === "undefined") {
+            console = {
+                log: function () { }
+            };
+        }
 
-            function soloLetras(event) {
-                let tecla = event.keyCode || event.which;
+        function soloLetras(event) {
+            let tecla = event.keyCode || event.which;
 
-                // Tecla de retroceso para borrar, siempre la permite
-                if (tecla === 8) {
-                    return true;
-                }
-
-                // Obtener el carácter ingresado
-                let tecla_final = String.fromCharCode(tecla);
-
-                // Patrón de entrada, en este caso solo acepta letras y espacios
-                let patron = /^[a-zA-Z\s]*$/;
-
-                if (!patron.test(tecla_final)) {
-                    // Alertar al usuario si la tecla ingresada no cumple el patrón
-                    alert("Ingrese únicamente letras y espacios. Evite el uso de caracteres especiales.");
-                    return false;
-                }
-
+            // Tecla de retroceso para borrar, siempre la permite
+            if (tecla === 8) {
                 return true;
             }
-            function alerta() {
-                var pass = document.getElementById("txtPassword").value;
-                var repass = document.getElementById("txtRepassword").value;
-                if (pass !== repass)
-                {
-                    alert("Las contraseñas no coinciden");
-                    document.getElementById("txtPassword").value = "";
-                    document.getElementById("txtRepassword").value = "";
-                } else {
-                    confirm("Su registro se ha realizado correctamente.");
-                    document.getElementById("form-submit").submit();
-                }
+
+            // Obtener el carácter ingresado
+            let tecla_final = String.fromCharCode(tecla);
+
+            // Patrón de entrada, en este caso solo acepta letras y espacios
+            let patron = /^[a-zA-Z\s]*$/;
+
+            if (!patron.test(tecla_final)) {
+                // Alertar al usuario si la tecla ingresada no cumple el patrón
+                alert("Ingrese únicamente letras y espacios. Evite el uso de caracteres especiales.");
+                return false;
             }
-            ;
-        </script>
-    </body>
+
+            return true;
+        }
+        function alerta() {
+            var pass = document.getElementById("txtPassword").value;
+            var repass = document.getElementById("txtRepassword").value;
+            if (pass !== repass)
+            {
+                alert("Las contraseñas no coinciden");
+                document.getElementById("txtPassword").value = "";
+                document.getElementById("txtRepassword").value = "";
+            } else {
+                confirm("Su registro se ha realizado correctamente.");
+                document.getElementById("form-submit").submit();
+            }
+        }
+        ;
+    </script>
+</body>
 </html>
