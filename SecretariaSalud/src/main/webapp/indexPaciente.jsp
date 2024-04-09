@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 8 abr 2024, 22:21:43
-    Author     : magda
+    Document   : indexPaciente
+    Created on : 8 abr 2024, 22:51:36
+    Author     : march
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,7 +29,7 @@
             <div class="login-form">
                 <h2>INICIO DE SESIÓN</h2>
                 <form action="menuMedico.html" method="POST">
-                    <label for="cedula">Cédula Profesional:</label>
+                    <label for="correo">Correo:</label>
                     <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula profesional">
 
                     <label for="clave">Clave:</label>
@@ -39,7 +39,11 @@
                 </form>
                 <br>
                 <div style="text-align: center;">
-                    <a  style="color: white;" href="indexPaciente.jsp">Soy paciente</a>
+                    <a  style="color: white;" href="registrarPaciente.jsp">¿No estas registrado? Registrate aquí!</a>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <a  style="color: white;" href="index.jsp">Soy médico</a>
                 </div>
             </div>
         </div> 

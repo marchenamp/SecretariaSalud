@@ -39,7 +39,7 @@
                 </form>
                 <br>
                 <div style="text-align: center;">
-                    <a  style="color: white;" href="perfil.html">Soy paciente</a>
+                    <a  style="color: white;" href="indexPaciente.jsp">Soy paciente</a>
                 </div>
             </div>
         </div> 

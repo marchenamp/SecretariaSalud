@@ -183,7 +183,7 @@ public class ConsultasPaciente extends Conexion {
                 pacienteEncontrado.setTelefono(rs.getString("telefono"));
                 pacienteEncontrado.setEstadoCivil(EstadoCivil.valueOf(rs.getString("estado_civil")));
                 pacienteEncontrado.setGenero(Genero.valueOf(rs.getString("genero")));
-                pacienteEncontrado.setTutor(sqlTutor.buscarPaciente(rs.getInt("id_tutor")));
+                pacienteEncontrado.setTutor(sqlTutor.buscarTutor(rs.getInt("id_tutor")));
                 
             }
         } catch (Exception e) {

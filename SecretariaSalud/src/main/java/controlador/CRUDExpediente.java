@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import modelo.Paciente;
 
 /**
  *
@@ -33,14 +34,25 @@ public class CRUDExpediente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String botonRegistrar = request.getParameter("RegistrarExpediente");
 
-        ConsultasPaciente sqlExpediente = new ConsultasPaciente();
+        ConsultasExpediente sqlExpediente = new ConsultasExpediente();
         ConsultasPaciente sqlPaciente = new ConsultasPaciente();
-        
+
         if (botonRegistrar != null) {
-            if (sqlExpediente.registrarExpediente()) {
+            String tipoSangre = null;
+            String estatura= null;
+            float peso = 0f;
+            String alergias = null;
+            String frecuenciaCardiaca = null;
+            String padecimientoPersonales = null;
+            String antecedentesHereditarios = null;
+            String nombreContactoEmergencia = null;
+            String telefonoContactoEmergencia = null;
+            Paciente paciente = null;
+            
+            if (sqlExpediente.registrarExpediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientoPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia, 0)) {
                 request.setAttribute("txt-exito", "Registro de expediente exitoso");
             } else {
                 request.setAttribute("txt-exito", "Registro de expediente fallido");

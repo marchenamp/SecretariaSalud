@@ -54,13 +54,13 @@ public class ConsultasTutor extends Conexion{
         return false;
     }
     
-    public Tutor buscarPaciente(int id) {
+    public Tutor buscarTutor(int id) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         Tutor tutorEncontrado = null;
 
         try {
-            String consulta = "SELECT * FROM tutores WHERE id = ?";
+            String consulta = "SELECT * FROM tutores WHERE id_tutor = ?";
             pst = getConexion().prepareStatement(consulta);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -95,5 +95,47 @@ public class ConsultasTutor extends Conexion{
             }
         }
         return tutorEncontrado;
+    }
+    
+    public Tutor buscarUltimoTutorRegistrado() {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Tutor ultimoTutorRegistrado = null;
+
+        try {
+            String consulta = "SELECT * FROM tutores ORDER BY id_tutor DESC LIMIT 1";
+            pst = getConexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                ultimoTutorRegistrado = new Tutor();
+                ultimoTutorRegistrado.setId(rs.getInt("id_tutor"));
+                ultimoTutorRegistrado.setNombres(rs.getString("nombres"));
+                ultimoTutorRegistrado.setApellidoPaterno(rs.getString("apellidopaterno"));
+                ultimoTutorRegistrado.setApellidoMaterno(rs.getString("apellidomaterno"));
+                ultimoTutorRegistrado.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                ultimoTutorRegistrado.setTelefono(rs.getString("telefono"));
+                ultimoTutorRegistrado.setGenero(Genero.valueOf(rs.getString("genero")));
+                ultimoTutorRegistrado.setParentesco(rs.getString("parentesco"));
+
+            }
+        } catch (Exception e) {
+            System.err.println("Error en: " + e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error en: " + e);
+            }
+        }
+        return ultimoTutorRegistrado;
     }
 }

@@ -12,8 +12,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.EstadoCivil;
 import modelo.Genero;
+import modelo.Tutor;
 
 /**
  *
@@ -30,9 +36,10 @@ public class CRUDPaciente extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
@@ -40,18 +47,69 @@ public class CRUDPaciente extends HttpServlet {
 
         ConsultasPaciente sqlPaciente = new ConsultasPaciente();
         ConsultasTutor sqlTutor = new ConsultasTutor();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
         if (botonRegistrar != null) {
-            if (sqlTutor.registrarTutor()) {
-                if (sqlPaciente.registrarPacienteConTutor()) {
+            String nombresTutor = request.getParameter("nombreTutor");
+            String apellidoPaternoTutor = request.getParameter("apellidoPaternoTutor");
+            String apellidoMaternoTutor = request.getParameter("apellidoMaternoTutor");
+
+            String fechaNacimientoTutorString = request.getParameter("fechaNacimientoTutor");
+            java.util.Date fechaUtilTutor = formatoFecha.parse(fechaNacimientoTutorString);
+            Date fechaNacimientoTutor = new Date(fechaUtilTutor.getTime());
+
+            String telefonoTutor = request.getParameter("telefonoTutor");
+            Genero generoTutor = Genero.valueOf(request.getParameter("generoTutor"));
+            String parentescoTutor = request.getParameter("parentescoTutor");
+            if (nombresTutor == null) {
+                String nombresPaciente = request.getParameter("nombresPaciente");
+                String apellidoPaternoPaciente = request.getParameter("apellidoPaternoPaciente");
+                String apellidoMaternoPaciente = request.getParameter("apellidoMaternoPaciente");
+                String correoPaciente = request.getParameter("correoPaciente");
+                String passwordPaciente = request.getParameter("passwordPaciente");
+
+                String fechaNacimientoPacienteString = request.getParameter("fechaNacimientoPaciente");
+                java.util.Date fechaUtilPaciente = formatoFecha.parse(fechaNacimientoPacienteString);
+                Date fechaNacimientoPaciente = new Date(fechaUtilPaciente.getTime());
+
+                String telefonoPaciente = request.getParameter("nombreCliente");
+                EstadoCivil estadoCivilPaciente = EstadoCivil.valueOf(request.getParameter("nombreCliente"));
+                Genero generoPaciente = Genero.valueOf(request.getParameter("nombreCliente"));
+                int idTutorPaciente = Integer.parseInt(request.getParameter("nombreCliente"));
+                Tutor tutorPaciente = sqlTutor.buscarTutor(idTutorPaciente);
+
+                if (sqlPaciente.registrarPacienteConTutor(nombresPaciente, apellidoPaternoPaciente, apellidoMaternoPaciente, correoPaciente, passwordPaciente, fechaNacimientoPaciente, telefonoPaciente, estadoCivilPaciente, generoPaciente, tutorPaciente)) {
                     request.setAttribute("txt-exito", "Registro de paciente exitoso");
                 } else {
                     request.setAttribute("txt-exito", "Registro de paciente fallido");
                 }
             } else {
-                request.setAttribute("txt-exito", "Registro de paciente fallido");
+                if (sqlTutor.registrarTutor(nombresTutor, apellidoPaternoTutor, apellidoMaternoTutor, fechaNacimientoTutor, telefonoTutor, generoTutor, parentescoTutor)) {
+                    String nombresPaciente = request.getParameter("nombresPaciente");
+                    String apellidoPaternoPaciente = request.getParameter("apellidoPaternoPaciente");
+                    String apellidoMaternoPaciente = request.getParameter("apellidoMaternoPaciente");
+                    String correoPaciente = request.getParameter("correoPaciente");
+                    String passwordPaciente = request.getParameter("passwordPaciente");
+
+                    String fechaNacimientoPacienteString = request.getParameter("fechaNacimientoPaciente");
+                    java.util.Date fechaUtilPaciente = formatoFecha.parse(fechaNacimientoPacienteString);
+                    Date fechaNacimientoPaciente = new Date(fechaUtilPaciente.getTime());
+
+                    String telefonoPaciente = request.getParameter("telefonoPaciente");
+                    EstadoCivil estadoCivilPaciente = EstadoCivil.valueOf(request.getParameter("estadoCivilPaciente"));
+                    Genero generoPaciente = Genero.valueOf(request.getParameter("generoPaciente"));
+                    Tutor tutorPaciente = sqlTutor.buscarUltimoTutorRegistrado();
+
+                    if (sqlPaciente.registrarPacienteConTutor(nombresPaciente, apellidoPaternoPaciente, apellidoMaternoPaciente, correoPaciente, passwordPaciente, fechaNacimientoPaciente, telefonoPaciente, estadoCivilPaciente, generoPaciente, tutorPaciente)) {
+                        request.setAttribute("txt-exito", "Registro de paciente exitoso");
+                    } else {
+                        request.setAttribute("txt-exito", "Registro de paciente fallido");
+                    }
+                } else {
+                    request.setAttribute("txt-exito", "Registro de paciente fallido");
+                }
             }
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("indexPaciente.jsp");
             rd.forward(request, response);
         }
     }
@@ -68,7 +126,11 @@ public class CRUDPaciente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CRUDPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,7 +144,11 @@ public class CRUDPaciente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CRUDPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
