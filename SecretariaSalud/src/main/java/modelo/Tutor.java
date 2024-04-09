@@ -18,8 +18,9 @@ public class Tutor {
     private Date fechaNacimiento;
     private String telefono;
     private Genero genero;
+    private String parentesco;
 
-    public Tutor(int id, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String telefono, Genero genero) {
+    public Tutor(int id, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String telefono, Genero genero, String parentesco) {
         this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -27,15 +28,17 @@ public class Tutor {
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.genero = genero;
+        this.parentesco = parentesco;
     }
 
-    public Tutor(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String telefono, Genero genero) {
+    public Tutor(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String telefono, Genero genero, String parentesco) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.genero = genero;
+        this.parentesco = parentesco;
     }
 
     public Tutor() {
@@ -95,6 +98,14 @@ public class Tutor {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public String getParentesco() {
+        return parentesco;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
     }
     
     

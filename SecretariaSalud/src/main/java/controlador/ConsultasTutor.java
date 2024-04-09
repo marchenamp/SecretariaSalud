@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.EstadoCivil;
 import modelo.Genero;
+import modelo.Tutor;
 
 /**
  *
@@ -20,20 +21,18 @@ public class ConsultasTutor extends Conexion{
     public ConsultasTutor() {
     }
     
-    public boolean registrarTutor(String nombres, String apellidoPaterno, String apellidoMaterno, String correo, String password, Date fechaNacimiento, String telefono, EstadoCivil estadoCivil, Genero genero) {
+    public boolean registrarTutor(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String telefono, Genero genero, String parentesco) {
         PreparedStatement pst = null;
         try {
-            String consulta = "INSERT INTO pacientes (nombres, apellidopaterno, apellidomaterno, correo, password, fecha_nacimiento, telefono, estado_civil, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String consulta = "INSERT INTO tutores (nombres, apellidopaterno, apellidomaterno, fecha_nacimiento, telefono, genero, parentesco) VALUES (?, ?, ?, ?, ?, ?, ?)";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1, nombres);
-            pst.setString(2, nombres);
-            pst.setString(3, nombres);
-            pst.setString(4, nombres);
-            pst.setString(5, nombres);
-            pst.setDate(6, fechaNacimiento);
-            pst.setString(7, nombres);
-            pst.setString(8, estadoCivil.name());
-            pst.setString(9, genero.name());
+            pst.setString(2, apellidoPaterno);
+            pst.setString(3, apellidoMaterno);
+            pst.setDate(4, fechaNacimiento);
+            pst.setString(5, telefono);
+            pst.setString(6, genero.name());
+            pst.setString(7, parentesco);
 
             if (pst.executeUpdate() == 1) {
                 return true;
@@ -53,5 +52,48 @@ public class ConsultasTutor extends Conexion{
 //            }
         }
         return false;
+    }
+    
+    public Tutor buscarPaciente(int id) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Tutor tutorEncontrado = null;
+
+        try {
+            String consulta = "SELECT * FROM tutores WHERE id = ?";
+            pst = getConexion().prepareStatement(consulta);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                tutorEncontrado = new Tutor();
+                tutorEncontrado.setId(rs.getInt("id_tutor"));
+                tutorEncontrado.setNombres(rs.getString("nombres"));
+                tutorEncontrado.setApellidoPaterno(rs.getString("apellidopaterno"));
+                tutorEncontrado.setApellidoMaterno(rs.getString("apellidomaterno"));
+                tutorEncontrado.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                tutorEncontrado.setTelefono(rs.getString("telefono"));
+                tutorEncontrado.setGenero(Genero.valueOf(rs.getString("genero")));
+                tutorEncontrado.setParentesco(rs.getString("parentesco"));
+
+            }
+        } catch (Exception e) {
+            System.err.println("Error en: " + e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error en: " + e);
+            }
+        }
+        return tutorEncontrado;
     }
 }
