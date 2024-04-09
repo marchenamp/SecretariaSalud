@@ -1,0 +1,222 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 8 abr 2024, 19:20:10
+    Author     : magda
+*/
+/* Estilos para el cuerpo de la página */
+body{
+    margin: 0;
+    padding: 0;
+}
+.body-styles::before {
+    content: "";
+    background-color: rgba(247, 248, 211, 0.7); /* Color de fondo */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+}
+
+.body-styles::after {
+    content: "";
+    background-image: url('../IMG/clinica.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; /* Ajustar la posición de la imagen de fondo */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -2; /* Asegura que la imagen de fondo esté detrás de todo */
+}
+
+/* Estilos para el encabezado */
+header {
+    display: flex;
+    align-items: center;
+    background-color: #9D2449;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos para el logo */
+.logo {
+    width: 60px;
+    height: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+/* Estilos para el título */
+h1 {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    color: #EFE6CD;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilos logo secretaria */
+.logo-secretaria {
+    width: 150px;
+    height: auto;
+}
+
+footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0; /* Alinea el footer a la derecha */
+    padding: 50px; /* Ajusta el espacio alrededor del logo */
+}
+
+/* Estilos para el registro */
+.register-form {
+    font-family: 'Arial', sans-serif;
+    color: #EFE6CD;
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #9D2449;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.register-form h2::after {
+    content: ''; /* Agrega contenido pseudo-elemento */
+    display: block; /* Hace que el pseudo-elemento sea un bloque */
+    width: 85%; /* Ancho de la línea */
+    height: 2px; /* Grosor de la línea */
+    background-color: rgba(239, 230, 205, 0.5); /* Color de la línea */
+    position: absolute; /* Coloca la línea de forma absoluta */
+    bottom: -5px; /* Posiciona la línea justo debajo del texto */
+    left: 50%; /* Alinea la línea al centro horizontal del h2 */
+    transform: translateX(-50%); /* Centra la línea horizontalmente */
+}
+
+
+.register-form label,
+.login-form label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="date"],
+.register-form input[type="email"],
+.register-form input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+.register-form button,
+.login-form button{
+    font-family: 'Arial', sans-serif;
+    font-size: medium;
+    width: 100%;
+    padding: 10px;
+    background-color: #D9D9D9;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-form button:hover,
+.login-form button:hover{
+    background-color: #b0afaf;
+    font-weight: bolder;
+    color: #000;
+}
+
+/* Estilos para el inicio de sesion */
+.login-form {
+    font-family: 'Arial', sans-serif;
+    color: #EFE6CD;
+    width: 400px;
+    margin: auto;
+    margin-top: 60px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #9D2449;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.login-form h2::after {
+    content: ''; /* Agrega contenido pseudo-elemento */
+    display: block; /* Hace que el pseudo-elemento sea un bloque */
+    width: 100%; /* Ancho de la línea */
+    height: 2px; /* Grosor de la línea */
+    background-color: rgba(239, 230, 205, 0.5); /* Color de la línea */
+    position: absolute; /* Coloca la línea de forma absoluta */
+    bottom: -5px; /* Posiciona la línea justo debajo del texto */
+    left: 50%; /* Alinea la línea al centro horizontal del h2 */
+    transform: translateX(-50%); /* Centra la línea horizontalmente */
+}
+
+.login-form a:hover{
+    font-weight: bolder;
+}
+
+/* Estilos para el contenedor */
+.container {
+    max-width: 800px; /* Ancho máximo del contenedor */
+    margin: auto; /* Centrar el contenedor en la página */
+    padding: 0 15px; /* Agregar un poco de relleno a los lados del contenedor */
+}
+
+/* Estilos para la fila */
+.row {
+    display: flex; /* Utilizar flexbox para alinear las columnas horizontalmente */
+    flex-wrap: wrap; /* Permitir que las columnas se envuelvan si no caben en una sola fila */
+    margin: 0 -15px; /* Compensar el relleno del contenedor */
+}
+
+/* Estilos para las columnas */
+.col {
+    flex: 1; /* Hacer que las columnas ocupen un espacio igual dentro de la fila */
+    padding: 0 15px; /* Agregar un poco de relleno a los lados de cada columna */
+}

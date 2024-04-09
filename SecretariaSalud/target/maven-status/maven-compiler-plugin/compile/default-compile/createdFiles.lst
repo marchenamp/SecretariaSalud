@@ -1,2 +1,11 @@
 secretariasalud\JakartaRestConfiguration.class
+controlador\Conexion.class
+controlador\ConsultasExpediente.class
+controlador\ConsultasPaciente.class
+controlador\ConsultasTutor.class
+modelo\Genero.class
+modelo\EstadoCivil.class
+modelo\Paciente.class
+modelo\Tutor.class
 secretariasalud\resources\JakartaEE10Resource.class
+modelo\Expediente.class
