@@ -41,23 +41,24 @@ public class CRUDExpediente extends HttpServlet {
         ConsultasPaciente sqlPaciente = new ConsultasPaciente();
 
         if (botonRegistrar != null) {
-            String tipoSangre = null;
-            String estatura= null;
-            float peso = 0f;
-            String alergias = null;
-            String frecuenciaCardiaca = null;
-            String padecimientoPersonales = null;
-            String antecedentesHereditarios = null;
-            String nombreContactoEmergencia = null;
-            String telefonoContactoEmergencia = null;
-            Paciente paciente = null;
+            String tipoSangre = request.getParameter("tipoSangre");
+            String estatura= request.getParameter("estatura");
+            float peso = Float.parseFloat(request.getParameter("peso"));
+            String alergias = request.getParameter("alergias");
+            String frecuenciaCardiaca = request.getParameter("frecuenciaCardiaca");
+            String padecimientosPersonales = request.getParameter("padecimientosPersonales");
+            String antecedentesHereditarios = request.getParameter("antecedentesHereditarios");
+            String nombreContactoEmergencia = request.getParameter("nombreContactoEmergencia");
+            String telefonoContactoEmergencia = request.getParameter("numeroContactoEmergencia");
+            String correoPaciente = request.getParameter("correo");
+            Paciente paciente = sqlPaciente.buscarPaciente(correoPaciente);
             
-            if (sqlExpediente.registrarExpediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientoPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia, 0)) {
+            if (sqlExpediente.registrarExpediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientosPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia, 2)) {
                 request.setAttribute("txt-exito", "Registro de expediente exitoso");
             } else {
                 request.setAttribute("txt-exito", "Registro de expediente fallido");
             }
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("registrarExpediente.jsp");
             rd.forward(request, response);
         }
     }

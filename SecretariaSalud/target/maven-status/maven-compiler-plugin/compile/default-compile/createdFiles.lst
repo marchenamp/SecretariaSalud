@@ -1,6 +1,7 @@
 controlador\ConsultasPaciente.class
 modelo\Genero.class
 controlador\CRUDExpediente.class
+controlador\CerrarSesion.class
 secretariasalud\JakartaRestConfiguration.class
 controlador\Conexion.class
 controlador\ConsultasExpediente.class
@@ -10,4 +11,5 @@ modelo\Paciente.class
 controlador\CRUDPaciente.class
 modelo\Tutor.class
 secretariasalud\resources\JakartaEE10Resource.class
+controlador\IniciarSesion.class
 modelo\Expediente.class

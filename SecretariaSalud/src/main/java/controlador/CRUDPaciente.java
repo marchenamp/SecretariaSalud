@@ -51,44 +51,46 @@ public class CRUDPaciente extends HttpServlet {
 
         if (botonRegistrar != null) {
             String nombresTutor = request.getParameter("nombreTutor");
-            String apellidoPaternoTutor = request.getParameter("apellidoPaternoTutor");
-            String apellidoMaternoTutor = request.getParameter("apellidoMaternoTutor");
-
-            String fechaNacimientoTutorString = request.getParameter("fechaNacimientoTutor");
-            java.util.Date fechaUtilTutor = formatoFecha.parse(fechaNacimientoTutorString);
-            Date fechaNacimientoTutor = new Date(fechaUtilTutor.getTime());
-
-            String telefonoTutor = request.getParameter("telefonoTutor");
-            Genero generoTutor = Genero.valueOf(request.getParameter("generoTutor"));
-            String parentescoTutor = request.getParameter("parentescoTutor");
+            System.out.println(nombresTutor);
+            
             if (nombresTutor == null) {
-                String nombresPaciente = request.getParameter("nombresPaciente");
+                System.out.println("hola");
+                String nombresPaciente = request.getParameter("nombrePaciente");
                 String apellidoPaternoPaciente = request.getParameter("apellidoPaternoPaciente");
                 String apellidoMaternoPaciente = request.getParameter("apellidoMaternoPaciente");
-                String correoPaciente = request.getParameter("correoPaciente");
+                String correoPaciente = request.getParameter("emailPaciente");
                 String passwordPaciente = request.getParameter("passwordPaciente");
 
                 String fechaNacimientoPacienteString = request.getParameter("fechaNacimientoPaciente");
                 java.util.Date fechaUtilPaciente = formatoFecha.parse(fechaNacimientoPacienteString);
                 Date fechaNacimientoPaciente = new Date(fechaUtilPaciente.getTime());
 
-                String telefonoPaciente = request.getParameter("nombreCliente");
-                EstadoCivil estadoCivilPaciente = EstadoCivil.valueOf(request.getParameter("nombreCliente"));
-                Genero generoPaciente = Genero.valueOf(request.getParameter("nombreCliente"));
-                int idTutorPaciente = Integer.parseInt(request.getParameter("nombreCliente"));
-                Tutor tutorPaciente = sqlTutor.buscarTutor(idTutorPaciente);
+                String telefonoPaciente = request.getParameter("telefonoPaciente");
+                EstadoCivil estadoCivilPaciente = EstadoCivil.valueOf(request.getParameter("estadoCivilPaciente"));
+                Genero generoPaciente = Genero.valueOf(request.getParameter("generoPaciente"));
 
-                if (sqlPaciente.registrarPacienteConTutor(nombresPaciente, apellidoPaternoPaciente, apellidoMaternoPaciente, correoPaciente, passwordPaciente, fechaNacimientoPaciente, telefonoPaciente, estadoCivilPaciente, generoPaciente, tutorPaciente)) {
+                if (sqlPaciente.registrarPaciente(nombresPaciente, apellidoPaternoPaciente, apellidoMaternoPaciente, correoPaciente, passwordPaciente, fechaNacimientoPaciente, telefonoPaciente, estadoCivilPaciente, generoPaciente)) {
                     request.setAttribute("txt-exito", "Registro de paciente exitoso");
                 } else {
                     request.setAttribute("txt-exito", "Registro de paciente fallido");
                 }
             } else {
+                String apellidoPaternoTutor = request.getParameter("apellidoPaternoTutor");
+                String apellidoMaternoTutor = request.getParameter("apellidoMaternoTutor");
+
+                String telefonoTutor = request.getParameter("telefonoTutor");
+                Genero generoTutor = Genero.valueOf(request.getParameter("generoTutor"));
+                String parentescoTutor = request.getParameter("parentescoTutor");
+
+                String fechaNacimientoTutorString = request.getParameter("fechaNacimientoTutor");
+                java.util.Date fechaUtilTutor = formatoFecha.parse(fechaNacimientoTutorString);
+                Date fechaNacimientoTutor = new Date(fechaUtilTutor.getTime());
+
                 if (sqlTutor.registrarTutor(nombresTutor, apellidoPaternoTutor, apellidoMaternoTutor, fechaNacimientoTutor, telefonoTutor, generoTutor, parentescoTutor)) {
-                    String nombresPaciente = request.getParameter("nombresPaciente");
+                    String nombresPaciente = request.getParameter("nombrePaciente");
                     String apellidoPaternoPaciente = request.getParameter("apellidoPaternoPaciente");
                     String apellidoMaternoPaciente = request.getParameter("apellidoMaternoPaciente");
-                    String correoPaciente = request.getParameter("correoPaciente");
+                    String correoPaciente = request.getParameter("emailPaciente");
                     String passwordPaciente = request.getParameter("passwordPaciente");
 
                     String fechaNacimientoPacienteString = request.getParameter("fechaNacimientoPaciente");

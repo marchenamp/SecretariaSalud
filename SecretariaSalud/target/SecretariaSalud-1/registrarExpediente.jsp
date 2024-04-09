@@ -40,7 +40,7 @@
             <div class="dropdown">
                 <button class="dropbtn" id="btnUsuario">
                     <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
-                    Usuario
+                    <% out.println(usuario); %>
                 </button>
                 <div class="dropdown-content">
                     <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
@@ -54,54 +54,12 @@
         <div class="body-styles">
             <!-- Formulario de Registro de Paciente -->
             <div class="register-form">
-                <form action="RegistrarExpediente" method="post">
+                <form action="CRUDExpediente" method="post">
                     <div class="heading">
                         <h2>REGISTRO DE EXPEDIENTE</h2>
                     </div>
 
                     <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <label for="nombre">Nombre(s):</label>
-                                <input type="text" name="nombre" placeholder="Ingrese lo(s) nombre(s)"  onkeypress="return soloLetras(event)"  title="Ingrese únicamente letras" maxlength="255" required>
-                            </div>
-                            <div class="col">
-                                <label for="apellidoPaterno">Apellido Paterno:</label>
-                                <input type="text" name="apellidoPaterno" placeholder="Ingrese el apellido paterno" onkeypress="return soloLetras(event)" maxlength="255" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="apellidoMaterno">Apellido Materno:</label>
-                                <input type="text" name="apellidoMaterno" placeholder="Ingrese el apellido materno" onkeypress="return soloLetras(event)" maxlength="255" required>
-                            </div>
-                            <div class="col">
-                                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                                <input name="fecha" type="date" id="fecha" class="form-control" id="fecha" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="genero">Género:</label>
-                                <select id="genero" name="genero">
-                                    <option value="seleccione">Seleccione el género</option>
-                                    <option value="femenino">Femenino</option>
-                                    <option value="masculino">Masculino</option>
-                                    <option value="noBinario">No binario</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="estadoCivil">Estado Civil:</label>
-                                <select id="estadoCivil" name="estadoCivil">
-                                    <option value="seleccione">Seleccione el estado civil</option>
-                                    <option value="soltero">Soltero</option>
-                                    <option value="casado">Casado</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="col">
                                 <label for="antecedentesHereditarios">Antecedentes Hereditarios:</label>
@@ -161,8 +119,9 @@
 
                                 <label for="numeroContactoEmergencia">Teléfono:</label>
                                 <input type="tel" id="numeroContactoEmergencia" name="numeroContactoEmergencia" pattern="[0-9]{10}" placeholder="Ingrese el número telefónico del contacto de emergencia" required>
-
-                                <button type="submit" id="form-submit" onclick="alerta()" class="btn">Registrar</button>
+                                
+                                <input type="hidden" id="correo" name="correo" value="<% out.println(usuario);%>" >
+                                <button type="submit" id="form-submit" name="RegistrarExpediente" onclick="alerta()" class="btn">Registrar</button>
                             </div>
                         </div>
                     </div>

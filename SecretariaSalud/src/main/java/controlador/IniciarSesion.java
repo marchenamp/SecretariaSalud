@@ -6,16 +6,13 @@ package controlador;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -39,26 +36,21 @@ public class IniciarSesion extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String correo = request.getParameter("correo");
-        String clave = request.getParameter("pass");
+        String password = request.getParameter("password");
 
         ConsultasPaciente sql = new ConsultasPaciente();
 
-        if (sql.autenticacion(correo, clave)) {
+        if (sql.autenticacion(correo, password)) {
             HttpSession objSesion;
-            if (sql.buscarPaciente(correo).getCorreo().equals("Administrador")) {
                 objSesion = request.getSession(true);
                 objSesion.setAttribute("correo", correo);
-                response.sendRedirect("admin.jsp");
-            } else {
-                objSesion = request.getSession(true);
-                objSesion.setAttribute("correo", correo);
-                response.sendRedirect("index.jsp");
-            }
+                response.sendRedirect("registrarExpediente.jsp");
         } else {
             request.setAttribute("txt-advertencia", "Credenciales incorrectas");
-            RequestDispatcher rd = request.getRequestDispatcher("iniciosesion.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
