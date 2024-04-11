@@ -35,14 +35,17 @@ public class CerrarSesion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
 
-            // Obtiene el correo de la sesión
-            String correo = (String) session.getAttribute("correo");
-
+            // Obtiene el id de la sesión
+            String cadenaId = (String) session.getAttribute("id");
+            cadenaId = cadenaId.trim();
+            cadenaId = cadenaId.replace("\n", "");
+            int id = Integer.parseInt(cadenaId);
             ConsultasPaciente sql = new ConsultasPaciente();
 
-            if (correo != null && sql.buscarPaciente(correo) != null) {
-                // Elimina el correo de la sesión
+            if (id != 0 && sql.buscarPaciente(id) != null) {
+                // Elimina el correo e id de la sesión
                 session.removeAttribute("correo");
+                session.removeAttribute("id");
 
                 // Redirige a la página de inicio
                 response.sendRedirect("index.jsp");

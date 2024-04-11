@@ -47,6 +47,9 @@
                 </form>
                 <br>
                 <div style="text-align: center;">
+                    <a  style="color: white;" href="registrarPaciente.jsp">¿No estas registrado? Registrate aquí como médico!</a>
+                </div>
+                <div style="text-align: center;">
                     <a  style="color: white;" href="indexPaciente.jsp">Soy paciente</a>
                 </div>
             </div>

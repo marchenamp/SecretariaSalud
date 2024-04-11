@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import modelo.Paciente;
 
 /**
  *
@@ -41,10 +42,13 @@ public class IniciarSesion extends HttpServlet {
         ConsultasPaciente sql = new ConsultasPaciente();
 
         if (sql.autenticacion(correo, password)) {
+            Paciente paciente = sql.obtenerPacientePorCorreo(correo, password);
+            
             HttpSession objSesion;
-                objSesion = request.getSession(true);
-                objSesion.setAttribute("correo", correo);
-                response.sendRedirect("registrarExpediente.jsp");
+            objSesion = request.getSession(true);
+            objSesion.setAttribute("correo", correo);
+            objSesion.setAttribute("id", String.valueOf(paciente.getId()));
+            response.sendRedirect("registrarExpediente.jsp");
         } else {
             request.setAttribute("txt-advertencia", "Credenciales incorrectas");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

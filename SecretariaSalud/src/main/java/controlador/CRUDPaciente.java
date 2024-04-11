@@ -51,10 +51,8 @@ public class CRUDPaciente extends HttpServlet {
 
         if (botonRegistrar != null) {
             String nombresTutor = request.getParameter("nombreTutor");
-            System.out.println(nombresTutor);
             
-            if (nombresTutor == null) {
-                System.out.println("hola");
+            if (nombresTutor.equalsIgnoreCase("")) {
                 String nombresPaciente = request.getParameter("nombrePaciente");
                 String apellidoPaternoPaciente = request.getParameter("apellidoPaternoPaciente");
                 String apellidoMaternoPaciente = request.getParameter("apellidoMaternoPaciente");

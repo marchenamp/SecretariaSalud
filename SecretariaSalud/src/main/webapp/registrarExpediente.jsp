@@ -8,6 +8,7 @@
 <%
     HttpSession objSesion=request.getSession(false);
     String usuario=(String)objSesion.getAttribute("correo");
+    String idPaciente = (String)objSesion.getAttribute("id");
     if(usuario == null){
         usuario = "";
     }
@@ -121,6 +122,7 @@
                                 <input type="tel" id="numeroContactoEmergencia" name="numeroContactoEmergencia" pattern="[0-9]{10}" placeholder="Ingrese el número telefónico del contacto de emergencia" required>
                                 
                                 <input type="hidden" id="correo" name="correo" value="<% out.println(usuario);%>" >
+                                <input type="hidden" id="idPaciente" name="idPaciente" value="<% out.println(idPaciente);%>" >
                                 <button type="submit" id="form-submit" name="RegistrarExpediente" onclick="alerta()" class="btn">Registrar</button>
                             </div>
                         </div>

@@ -159,19 +159,19 @@ public class ConsultasPaciente extends Conexion {
         }
         return false;
     }
-
-    public Paciente buscarPaciente(String correo) {
+    
+    public Paciente obtenerPacientePorCorreo(String correo, String password) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         Paciente pacienteEncontrado = null;
         ConsultasTutor sqlTutor = new ConsultasTutor();
-        System.out.println(correo);
         try {
-            String consulta = "SELECT * FROM pacientes WHERE correo = ?";
+            String consulta = "SELECT * FROM pacientes WHERE correo = ? AND password = ?";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1, correo);
+            pst.setString(2, password);
             rs = pst.executeQuery();
-            System.out.println(rs.next());
+
             if (rs.next()) {
                 pacienteEncontrado = new Paciente();
                 pacienteEncontrado.setId(rs.getInt("id_paciente"));
@@ -185,7 +185,57 @@ public class ConsultasPaciente extends Conexion {
                 pacienteEncontrado.setEstadoCivil(EstadoCivil.valueOf(rs.getString("estado_civil")));
                 pacienteEncontrado.setGenero(Genero.valueOf(rs.getString("genero")));
                 pacienteEncontrado.setTutor(sqlTutor.buscarTutor(rs.getInt("id_tutor")));
+                
+                return pacienteEncontrado;
+            }
+        } catch (Exception e) {
+            System.err.println("Error en: " + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+//                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error en: " + e);
+            }
+        }
+        return pacienteEncontrado;
+    }
 
+    public Paciente buscarPaciente(int id) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Paciente pacienteEncontrado = null;
+        ConsultasTutor sqlTutor = new ConsultasTutor();
+
+        try {
+            con = getConexion();
+            String consulta = "SELECT * FROM pacientes WHERE id_paciente = ?";
+            pst = con.prepareStatement(consulta);
+            pst.setInt(1, id);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                pacienteEncontrado = new Paciente();
+                pacienteEncontrado.setId(rs.getInt("id_paciente"));
+                pacienteEncontrado.setNombres(rs.getString("nombres"));
+                pacienteEncontrado.setApellidoPaterno(rs.getString("apellidopaterno"));
+                pacienteEncontrado.setApellidoMaterno(rs.getString("apellidomaterno"));
+                pacienteEncontrado.setCorreo(rs.getString("correo"));
+                pacienteEncontrado.setPassword(rs.getString("password"));
+                pacienteEncontrado.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                pacienteEncontrado.setTelefono(rs.getString("telefono"));
+                pacienteEncontrado.setEstadoCivil(EstadoCivil.valueOf(rs.getString("estado_civil")));
+                pacienteEncontrado.setGenero(Genero.valueOf(rs.getString("genero")));
+                pacienteEncontrado.setTutor(sqlTutor.buscarTutor(rs.getInt("id_tutor")));
             }
         } catch (SQLException e) {
             System.err.println("Error en: " + e);
@@ -197,8 +247,8 @@ public class ConsultasPaciente extends Conexion {
                 if (pst != null) {
                     pst.close();
                 }
-                if (getConexion() != null) {
-                    getConexion().close();
+                if (con != null) {
+                    con.close();
                 }
             } catch (SQLException e) {
                 System.err.println("Error en: " + e);

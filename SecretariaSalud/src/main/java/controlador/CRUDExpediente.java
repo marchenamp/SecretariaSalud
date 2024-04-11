@@ -50,10 +50,12 @@ public class CRUDExpediente extends HttpServlet {
             String antecedentesHereditarios = request.getParameter("antecedentesHereditarios");
             String nombreContactoEmergencia = request.getParameter("nombreContactoEmergencia");
             String telefonoContactoEmergencia = request.getParameter("numeroContactoEmergencia");
-            String correoPaciente = request.getParameter("correo");
-            Paciente paciente = sqlPaciente.buscarPaciente(correoPaciente);
+            String cadenaIdPaciente = request.getParameter("idPaciente");
+            cadenaIdPaciente = cadenaIdPaciente.trim();
+            cadenaIdPaciente = cadenaIdPaciente.replace("\n", "");
+            int idPaciente = Integer.parseInt(cadenaIdPaciente);
             
-            if (sqlExpediente.registrarExpediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientosPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia, 2)) {
+            if (sqlExpediente.registrarExpediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientosPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia, idPaciente)) {
                 request.setAttribute("txt-exito", "Registro de expediente exitoso");
             } else {
                 request.setAttribute("txt-exito", "Registro de expediente fallido");
