@@ -47,6 +47,18 @@ public class Expediente {
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
         this.paciente = paciente;
     }
+    
+        public Expediente(String tipoSangre, String estatura, float peso, String alergias, String frecuenciaCardiaca, String padecimientoPersonales, String antecedentesHereditarios, String nombreContactoEmergencia, String telefonoContactoEmergencia) {
+        this.tipoSangre = tipoSangre;
+        this.estatura = estatura;
+        this.peso = peso;
+        this.alergias = alergias;
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
+        this.padecimientoPersonales = padecimientoPersonales;
+        this.antecedentesHereditarios = antecedentesHereditarios;
+        this.nombreContactoEmergencia = nombreContactoEmergencia;
+        this.telefonoContactoEmergencia = telefonoContactoEmergencia;
+    }
 
     public Expediente() {
     }

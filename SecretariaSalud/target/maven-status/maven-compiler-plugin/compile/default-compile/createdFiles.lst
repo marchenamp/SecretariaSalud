@@ -6,7 +6,9 @@ secretariasalud\JakartaRestConfiguration.class
 controlador\Conexion.class
 controlador\ConsultasExpediente.class
 controlador\ConsultasTutor.class
+modelo\AccionPaciente.class
 modelo\EstadoCivil.class
+modelo\AccionExpediente.class
 modelo\Paciente.class
 controlador\CRUDPaciente.class
 modelo\Tutor.class
