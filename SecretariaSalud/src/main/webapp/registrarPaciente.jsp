@@ -106,7 +106,7 @@
                             </div>
                             <div class="col">
                                 <label for="telefono">Teléfono:</label>
-                                <input type="tel" name="telefonoPaciente" placeholder="Ingrese su número telefónico" maxlength="10" pattern="^\+?\d{1,3}[-\s]?\d{3,4}[-\s]?\d{3,4}$" required>
+                                <input type="tel" name="telefonoPaciente" placeholder="Ingrese su número telefónico" maxlength="10" pattern="[0-9]{10}" title="Ingrese solo números (máximo 10 dígitos)" required>
                             </div>
                         </div>
 
@@ -151,7 +151,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="telefonoTutor">Teléfono:</label>
-                                    <input type="tel" name="telefonoTutor" placeholder="Ingrese el número telefónico de su tutor" maxlength="10" pattern="^\+?\d{1,3}[-\s]?\d{3,4}[-\s]?\d{3,4}$" >
+                                    <input type="tel" name="telefonoTutor" placeholder="Ingrese el número telefónico de su tutor" maxlength="10" pattern="[0-9]{10}" title="Ingrese solo números (máximo 10 dígitos)" >
                                 </div>
                                 <div class="col">
                                     <label for="generoTutor">Género:</label>
