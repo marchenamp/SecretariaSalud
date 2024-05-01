@@ -119,7 +119,7 @@
                                 <input type="text" id="nombreContactoEmergencia" name="nombreContactoEmergencia" placeholder="Ingrese el nombre completo del contacto de emergencia" required>
 
                                 <label for="numeroContactoEmergencia">Teléfono:</label>
-                                <input type="tel" id="numeroContactoEmergencia" name="numeroContactoEmergencia" pattern="[0-9]{10}" placeholder="Ingrese el número telefónico del contacto de emergencia" required>
+                                <input type="tel" id="numeroContactoEmergencia" name="numeroContactoEmergencia" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" placeholder="Ingrese el número telefónico del contacto de emergencia" required>
                                 
                                 <input type="hidden" id="correo" name="correo" value="<% out.println(usuario);%>" >
                                 <input type="hidden" id="idPaciente" name="idPaciente" value="<% out.println(idPaciente);%>" >

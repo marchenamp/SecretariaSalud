@@ -67,7 +67,7 @@
                             </div>
                             <div class="col">
                                 <label for="telefono">Teléfono:</label>
-                                <input type="tel" name="telefonoMedico" placeholder="Ingrese su número telefónico" maxlength="10" pattern="[0-9]{10}" title="Ingrese solo números (máximo 10 dígitos)" required>
+                                <input type="tel" name="telefonoMedico" placeholder="Ingrese su número telefónico" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" title="Ingrese solo números (máximo 10 dígitos)" required>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                             </div>
                             <div class="col">
                                 <label for="cedulaProfesional">Cédula Profesional:</label>
-                                <input type="text" name="cedulaProfesionalMedico" placeholder="Ingrese su cédula profesional"  maxlength="8" pattern="[0-9]{8}" title="Ingrese solo números (máximo 8 dígitos)" required>
+                                <input type="text" name="cedulaProfesionalMedico" placeholder="Ingrese su cédula profesional"  maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);" title="Ingrese solo números (máximo 8 dígitos)" required>
                             </div>
                         </div>
                         
