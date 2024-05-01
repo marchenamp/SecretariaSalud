@@ -19,20 +19,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.AccionExpediente;
-import modelo.Expediente;
+import modelo.AccionMedico;
+import modelo.Genero;
+import modelo.Medico;
 
 /**
  *
  * @author march
  */
-@WebServlet(name = "CRUDExpediente", urlPatterns = {"/CRUDExpediente"})
-public class CRUDExpediente extends HttpServlet {
+@WebServlet(name = "ServletMedico", urlPatterns = {"/ServletMedico"})
+public class ServletMedico extends HttpServlet {
 
-    private static final String EXCHANGE_NAME = "expedientes";
+    private static final String EXCHANGE_NAME = "usuarios";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,32 +47,37 @@ public class CRUDExpediente extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws java.util.concurrent.TimeoutException
+     * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, TimeoutException {
+            throws ServletException, IOException, TimeoutException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
-        String botonRegistrar = request.getParameter("RegistrarExpediente");
+        String botonRegistrar = request.getParameter("RegistrarMedico");
 
-        String tipoSangre = request.getParameter("tipoSangre");
-        String estatura = request.getParameter("estatura");
-        float peso = Float.parseFloat(request.getParameter("peso"));
-        String alergias = request.getParameter("alergias");
-        String frecuenciaCardiaca = request.getParameter("frecuenciaCardiaca");
-        String padecimientosPersonales = request.getParameter("padecimientosPersonales");
-        String antecedentesHereditarios = request.getParameter("antecedentesHereditarios");
-        String nombreContactoEmergencia = request.getParameter("nombreContactoEmergencia");
-        String telefonoContactoEmergencia = request.getParameter("numeroContactoEmergencia");
-        String cadenaIdPaciente = request.getParameter("idPaciente");
-        cadenaIdPaciente = cadenaIdPaciente.trim();
-        cadenaIdPaciente = cadenaIdPaciente.replace("\n", "");
-        int idPaciente = Integer.parseInt(cadenaIdPaciente);
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
-        Expediente expediente = new Expediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientosPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia);
+        String nombresMedico = request.getParameter("nombreMedico");
+        String apellidoPaternoMedico = request.getParameter("apellidoPaternoMedico");
+        String apellidoMaternoMedico = request.getParameter("apellidoMaternoMedico");
+        String correoMedico = request.getParameter("emailMedico");
+        String passwordMedico = request.getParameter("passwordMedico");
+
+        String fechaNacimientoMedicoString = request.getParameter("fechaNacimientoMedico");
+        java.util.Date fechaUtilMedico = formatoFecha.parse(fechaNacimientoMedicoString);
+        Date fechaNacimientoMedico = new Date(fechaUtilMedico.getTime());
+
+        String telefonoMedico = request.getParameter("telefonoMedico");
+        Genero generoMedico = Genero.valueOf(request.getParameter("generoMedico"));
+        String cedulaProfesionalMedico = request.getParameter("cedulaProfesionalMedico");
+        String especialidadMedica = request.getParameter("especialidadMedica");
+        String lugarTrabajoActual = request.getParameter("lugarTrabajoActual");
+        
+        Medico medico = new Medico(nombresMedico, apellidoPaternoMedico, apellidoMaternoMedico, correoMedico, passwordMedico, fechaNacimientoMedico, telefonoMedico, generoMedico, cedulaProfesionalMedico, especialidadMedica, lugarTrabajoActual);
 
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
             // Declara el intercambio si aún no existe
@@ -77,16 +86,15 @@ public class CRUDExpediente extends HttpServlet {
             // Crear una cola temporal exclusiva para recibir la confirmación
             String confirmationQueueName = channel.queueDeclare().getQueue();
 
-            AccionExpediente accionExpediente = null;
+            AccionMedico accionMedico = null;
 
             if (botonRegistrar != null) {
 
-                accionExpediente = new AccionExpediente("registrar", expediente, idPaciente);
-                
-            }
+                accionMedico = new AccionMedico("registrar", medico);
 
+            }
             Gson serializer = new Gson();
-            String mensaje = serializer.toJson(accionExpediente);
+            String mensaje = serializer.toJson(accionMedico);
 
             // Configurar las propiedades del mensaje para recibir la confirmación
             AMQP.BasicProperties props = new AMQP.BasicProperties.Builder()
@@ -110,11 +118,11 @@ public class CRUDExpediente extends HttpServlet {
                 }
             }
             if (confirmationMessage.equalsIgnoreCase("Exito")) {
-                request.setAttribute("txt-exito", "Registro de expediente exitoso");
+                request.setAttribute("txt-exito", "Registro de medico exitoso");
             } else {
-                request.setAttribute("txt-exito", "Registro de expediente fallido");
+                request.setAttribute("txt-exito", "Registro de medico fallido");
             }
-            RequestDispatcher rd = request.getRequestDispatcher("registrarExpediente.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         }
     }
@@ -133,8 +141,8 @@ public class CRUDExpediente extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (TimeoutException ex) {
-            Logger.getLogger(CRUDExpediente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException | ParseException ex) {
+            Logger.getLogger(ServletMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -151,8 +159,8 @@ public class CRUDExpediente extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (TimeoutException ex) {
-            Logger.getLogger(CRUDExpediente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException | ParseException ex) {
+            Logger.getLogger(ServletMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

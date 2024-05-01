@@ -55,7 +55,7 @@
         <div class="body-styles">
             <!-- Formulario de Registro de Paciente -->
             <div class="register-form">
-                <form action="CRUDExpediente" method="post">
+                <form action="ServletExpediente" method="post">
                     <div class="heading">
                         <h2>REGISTRO DE EXPEDIENTE</h2>
                     </div>

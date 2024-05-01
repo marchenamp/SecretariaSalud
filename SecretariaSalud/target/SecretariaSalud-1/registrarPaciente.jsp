@@ -46,7 +46,7 @@
         </header>
         <div class="body-styles">
             <div class="register-form">
-                <form action="CRUDPaciente" method="post">
+                <form action="ServletPaciente" method="post">
                     <div class="heading">
                         <h2>REGISTRO DE PACIENTE</h2>
                     </div>

@@ -35,8 +35,8 @@ import modelo.Tutor;
  *
  * @author march
  */
-@WebServlet(name = "CRUDPaciente", urlPatterns = {"/CRUDPaciente"})
-public class CRUDPaciente extends HttpServlet {
+@WebServlet(name = "ServletPaciente", urlPatterns = {"/ServletPaciente"})
+public class ServletPaciente extends HttpServlet {
 
     private static final String EXCHANGE_NAME = "usuarios";
 
@@ -183,13 +183,10 @@ public class CRUDPaciente extends HttpServlet {
         try {
             processRequest(request, response);
 
-        } catch (ParseException ex) {
-            Logger.getLogger(CRUDPaciente.class
+        } catch (ParseException | TimeoutException ex) {
+            Logger.getLogger(ServletPaciente.class
                     .getName()).log(Level.SEVERE, null, ex);
 
-        } catch (TimeoutException ex) {
-            Logger.getLogger(CRUDPaciente.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -207,13 +204,10 @@ public class CRUDPaciente extends HttpServlet {
         try {
             processRequest(request, response);
 
-        } catch (ParseException ex) {
-            Logger.getLogger(CRUDPaciente.class
+        } catch (ParseException | TimeoutException ex) {
+            Logger.getLogger(ServletPaciente.class
                     .getName()).log(Level.SEVERE, null, ex);
 
-        } catch (TimeoutException ex) {
-            Logger.getLogger(CRUDPaciente.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 

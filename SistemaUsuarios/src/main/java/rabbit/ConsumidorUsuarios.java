@@ -11,11 +11,15 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import controlador.ConsultasMedico;
 import controlador.ConsultasPaciente;
 import controlador.ConsultasTutor;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
+import modelo.AccionMedico;
 import modelo.AccionPaciente;
+import modelo.Genero;
+import modelo.Medico;
 import modelo.Paciente;
 import modelo.Tutor;
 
@@ -78,10 +82,15 @@ public class ConsumidorUsuarios {
                             break;
                     }
                 } else if (message.contains("medico")) {
-
-                    switch ("") {
+                    ConsultasMedico sqlMedico = new ConsultasMedico();
+                    
+                    AccionMedico accionMedico = gson.fromJson(message, AccionMedico.class);
+                    
+                    Medico medico = accionMedico.getMedico();
+                    
+                    switch (accionMedico.getAccion()) {
                         case "registrar":
-
+                            confirmador = sqlMedico.registrarMedico(medico.getNombres(), medico.getApellidoPaterno(), medico.getApellidoMaterno(), medico.getCorreo(), medico.getPassword(), medico.getFechaNacimiento(), medico.getTelefono(), medico.getGenero(), medico.getCedulaProfesional(), medico.getEspecialidadMedica(), medico.getLugarTrabajoActual());
                             break;
                         case "actualizar":
 
