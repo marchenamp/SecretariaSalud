@@ -7,13 +7,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : magda
 */
 /* Estilos para el cuerpo de la página */
+:root{
+    --fondo: #e9efd8;
+    --tinto: #9D2449;
+}
+
 body{
     margin: 0;
     padding: 0;
 }
+
+.body-styles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .body-styles::before {
     content: "";
-    background-color: rgba(247, 248, 211, 0.7); /* Color de fondo */
+    background-color: var(--fondo); /* Color de fondo */
     position: fixed;
     top: 0;
     right: 0;
@@ -40,9 +52,9 @@ body{
 header {
     display: flex;
     align-items: center;
-    background-color: #9D2449;
+    background-color: var(--tinto);
     padding: 20px 0;
-    width: 100%;
+    width: 100%; /* Ancho del encabezado al 100% del contenedor padre */
     position: relative;
     z-index: 1;
     justify-content: space-between;
@@ -101,7 +113,7 @@ footer {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #9D2449;
+    background-color: var(--tinto);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -122,7 +134,6 @@ footer {
     left: 50%; /* Alinea la línea al centro horizontal del h2 */
     transform: translateX(-50%); /* Centra la línea horizontalmente */
 }
-
 
 .register-form label,
 .login-form label{
@@ -151,7 +162,7 @@ select {
     font-size: medium;
     width: 100%;
     padding: 10px;
-    background-color: #D9D9D9;
+    background-color: #aeaeae;
     color: #000;
     border: none;
     border-radius: 5px;
@@ -175,7 +186,7 @@ select {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #9D2449;
+    background-color: var(--tinto);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -292,4 +303,294 @@ select {
     display: inline-block;
     margin-right: 8px;
     color: white;
+}
+
+/* Estilos para el contenedor del botón */
+.button-container {
+    display: flex;
+    justify-content: center; /* Alinea el contenido al centro horizontalmente */
+    margin-top: 10px; /* Espacio superior */
+}
+
+/* Estilos para el botón de huella */
+.fingerprint-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+/* Estilos para la imagen de la huella */
+.huella{
+    width: 150px; /* Ajusta el ancho de la imagen al 100% del botón */
+    height: auto; /* Mantén la proporción original de la imagen */
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Estilos para la imagen de la huella verificada */
+.huella-verificada {
+    position: absolute; /* Coloca la imagen encima de la huella normal */
+    left: 50%; /* Sitúa el lado izquierdo de la imagen en el centro horizontal */
+    transform: translateX(-50%); /* Desplaza la imagen hacia la izquierda en la mitad de su propio ancho */
+    opacity: 0; /* Oculta la imagen de la huella verificada inicialmente */
+    transition: opacity 0.3s ease; /* Agrega una transición suave para el cambio de opacidad */
+    width: 150px; /* Ajusta el ancho de la imagen */
+    height: auto; /* Mantén la proporción original de la imagen */
+}
+
+/* Cambiar la imagen cuando el botón está en hover */
+.fingerprint-button:hover .huella {
+    opacity: 0; /* Oculta la huella normal cuando se hace hover */
+}
+
+.fingerprint-button:hover .huella-verificada {
+    opacity: 1; /* Muestra la imagen de la huella verificada cuando se hace hover */
+}
+
+.tabla-container {
+    margin: 20px auto;
+    width: 80%; /* Ajusta el ancho de la tabla según sea necesario */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 10px;
+    border: 2px solid black;
+    background-color: white;
+    text-align: left;
+    color: black;
+    font-family: 'Arial', sans-serif;
+}
+
+thead {
+    background-color: #9d2448b1;
+}
+
+th {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #b0afaf;
+}
+
+a{
+    text-decoration: none;
+}
+
+h2{
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+.body-styles h3{
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+}
+
+.password-container {
+    position: relative;
+}
+
+#password {
+    padding-right: 1px; /* Ajusta el padding derecho para dejar espacio para la imagen del candado */
+}
+
+#candado {
+    position: absolute;
+    top: 35%;
+    right: 10px; /* Ajusta la posición de la imagen del candado */
+    transform: translateY(-50%); /* Centra verticalmente la imagen del candado */
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.botones {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal */
+    width: 80%; /* Ancho del contenedor */
+    margin: auto; /* Centra el contenedor en la página */
+}
+
+#regresar-btn, #agregar-btn {
+    width: 100px;
+    height: 40px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--tinto);
+    color: white;
+    border: black;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#ver-btn {
+    width: 100%; /* Ancho del botón al 100% del contenedor (celda de la tabla) */
+    height: 100%; /* Altura del botón al 100% del contenedor (celda de la tabla) */
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px; /* Ajusta el relleno del botón según sea necesario */
+    box-sizing: border-box; /* Asegura que el relleno no afecte el tamaño total del botón */
+    text-decoration: underline;
+}
+
+#regresar-btn:hover,
+#agregar-btn:hover,
+.expediente-btn:hover,
+.verCita-btn:hover,
+.registrarCita-btn:hover{
+    background-color: #5e162c;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    margin-top: 50px;
+    gap:90px;
+}
+
+.grid-medico {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.item1-medico,
+.item2-medico{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.gridArchivos {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    height: 100%;
+    margin-top: 50px;
+}
+
+.item1,
+.item2,
+.item3{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+#expediente-icon,
+#registrarCita-icon,
+#verCitas-icon{
+    height: 30vh; /* Altura del 20% del viewport height */
+    padding: 2.2vw; /* Relleno del 5% del viewport width */
+}
+
+.item1 h3,
+.item2 h3,
+.item3 h3,
+.item1-medico h3,
+.item2-medico h3{
+    text-align: center; /* Centra el texto horizontalmente */
+    margin-top: 10px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+.expediente-btn,
+.verCita-btn,
+.registrarCita-btn{
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--tinto);
+    color: white;
+    border: 2px solid #5e162c; /* Agrega un borde a los botones */
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Agrega una transición suave al cambiar el color de fondo */
+}
+
+/* Estilos para los elementos del menú */
+.menu-btn-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.celda-btn{
+    background-color: #b1506d;
+}
+
+.celda-btn:hover{
+    background-color: #a73a5b;
+    cursor: pointer;
+}
+
+#archivo {
+    font-family: 'Arial', sans-serif;
+    font-size: medium;
+    width: 50%; /* Cambia el ancho según sea necesario */
+    margin-top: 50px;
+    justify-content: center;
+}
+
+#eliminar-btn {
+    width: 120px;
+    height: 40px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--tinto);
+    color: white;
+    border: black;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#agregarArchivo-btn {
+    width: 120px;
+    height: 40px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--tinto);
+    color: white;
+    border: black;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: auto; /* Alinea el botón de agregar a la derecha */
+}
+
+#previsualizacion {
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    color: black;
+}
+
+.botonesExp {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal */
+    width: 80%; /* Ancho del contenedor */
+    margin: auto; /* Centra el contenedor en la página */   
 }

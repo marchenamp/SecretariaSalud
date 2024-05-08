@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Expediente clinico electronico</title>
+        <title>Inicio de Sesión - Paciente</title>
         <link rel="stylesheet" href="CSS/estilos.css">
     </head>
 
@@ -35,7 +35,11 @@
             }
             %>
             <div class="login-form">
-                <h2>INICIO DE SESIÓN</h2>
+                <h2>
+                    INICIO DE SESIÓN
+                    <br>
+                    - PACIENTE -
+                </h2>
                 <form action="IniciarSesion" method="POST">
                     <label for="correo">Correo:</label>
                     <input type="text" id="cedula" name="correo" placeholder="Ingrese su correo electrónico">
@@ -47,7 +51,7 @@
                 </form>
                 <br>
                 <div style="text-align: center;">
-                    <a  style="color: white;" href="registrarPaciente.jsp">¿No estas registrado? Registrate aquí como paciente!</a>
+                    <a  style="color: white;" href="registrarPaciente.jsp">¿Eres paciente y no estás registrado? ¡Registrate aquí!</a>
                 </div>
                 <br>
                 <div style="text-align: center;">

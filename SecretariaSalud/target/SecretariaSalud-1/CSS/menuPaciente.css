@@ -1,8 +1,11 @@
 /* Estilos para el cuerpo de la página */
+:root{
+ --fondo: #e9efd8;   
+}
 body {
     margin: 0;
     position: relative; /* Añadido para que el position absolute funcione correctamente */
-    background-color: rgba(247, 248, 211); /* Color de fondo */
+    background-color: var(--fondo); /* Color de fondo */
 
 }
 
