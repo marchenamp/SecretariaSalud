@@ -407,13 +407,26 @@ h2{
 
 #candado {
     position: absolute;
-    top: 35%;
+    top: 10%;
     right: 10px; /* Ajusta la posición de la imagen del candado */
-    transform: translateY(-50%); /* Centra verticalmente la imagen del candado */
+    /*transform: translateY(-50%);  Centra verticalmente la imagen del candado */
     cursor: pointer;
     height: 20px;
     width: 20px;
     margin-right: 10px;
+    vertical-align: middle;
+}
+
+#candadoLogin {
+    position: absolute;
+    right: 10px; /* Ajusta la posición de la imagen del candado */
+    /*transform: translateY(-50%);  Centra verticalmente la imagen del candado */
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: 10px;
 }
 
 .botones {

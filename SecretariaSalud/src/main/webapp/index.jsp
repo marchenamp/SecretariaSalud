@@ -44,8 +44,11 @@
                     <label for="cedula">Cédula Profesional:</label>
                     <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula profesional">
 
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                    <div class="password-container">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                        <img src="IMG/candado-cerrado.png" alt="Candado cerrado" id="candadoLogin" class="icon" onclick="mostrarPassword()">
+                    </div>
 
                     <button type="submit">Ingresar</button>
                 </form>
@@ -63,5 +66,17 @@
             <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
         </footer>
     </body>
-
+    <script>
+        function mostrarPassword() {
+            var cambio = document.getElementById("password");
+            var icono = document.getElementById("show_password");
+            if (cambio.type === "password") {
+                cambio.type = "text";
+                document.getElementById('candadoLogin').src = 'IMG/candado-abierto.png';
+            } else {
+                cambio.type = "password";
+                document.getElementById('candadoLogin').src = 'IMG/candado-cerrado.png';
+            }
+        }
+    </script>
 </html>
