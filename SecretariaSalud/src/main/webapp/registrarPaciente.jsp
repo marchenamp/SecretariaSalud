@@ -36,14 +36,16 @@
     </head>
 
     <body>
+        
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
             </div>
             <div class="title-container">
-                <h1>Expediente Clínico</h1>
+                <h1>Secretaría de Salud</h1>
             </div>
         </header>
+        
         <div class="body-styles">
             <div class="register-form">
                 <form action="ServletPaciente" method="post">
@@ -81,7 +83,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="genero">Género:</label>
-                                <select id="genero" name="generoPaciente">
+                                <select id="genero" name="generoPaciente" required>
                                     <option value="seleccione">Seleccione su género</option>
                                     <option value="FEMENINO">Femenino</option>
                                     <option value="MASCULINO">Masculino</option>
@@ -90,7 +92,7 @@
                             </div>
                             <div class="col">
                                 <label for="estadoCivil">Estado Civil:</label>
-                                <select id="estadoCivil" name="estadoCivilPaciente">
+                                <select id="estadoCivil" name="estadoCivilPaciente" required>
                                     <option value="seleccione">Seleccione su estado civil</option>
                                     <option value="SOLTERO">Soltero</option>
                                     <option value="CASADO">Casado</option>
@@ -102,7 +104,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="email">Correo Electrónico:</label>
-                                <input type="email" name="emailPaciente" placeholder="Ingrese su correo electrónico" maxlength="255" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Debe coincidir con el formato de un correo electrónico." required>
+                                <input type="email" name="emailPaciente" placeholder="Ingrese su correo electrónico" maxlength="255" required>
                             </div>
                             <div class="col">
                                 <label for="telefono">Teléfono:</label>
@@ -129,33 +131,33 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="nombreTutor">Nombre(s):</label>
-                                    <input type="text" name="nombreTutor" placeholder="Ingrese lo(s) nombre(s) del tutor" onkeypress="return soloLetras(event)" title="Ingrese únicamente letras" maxlength="255" >
+                                    <input type="text" name="nombreTutor" placeholder="Ingrese lo(s) nombre(s) del tutor" onkeypress="return soloLetras(event)" title="Ingrese únicamente letras" maxlength="255" required>
                                 </div>
                                 <div class="col">
                                     <label for="apellidoPaternoTutor">Apellido Paterno:</label>
-                                    <input type="text" name="apellidoPaternoTutor" placeholder="Ingrese el apellido paterno del tutor" onkeypress="return soloLetras(event)" maxlength="255" >
+                                    <input type="text" name="apellidoPaternoTutor" placeholder="Ingrese el apellido paterno del tutor" onkeypress="return soloLetras(event)" maxlength="255" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <label for="apellidoMaternoTutor">Apellido Materno:</label>
-                                    <input type="text" name="apellidoMaternoTutor" placeholder="Ingrese el apellido materno del tutor" onkeypress="return soloLetras(event)" maxlength="255" >
+                                    <input type="text" name="apellidoMaternoTutor" placeholder="Ingrese el apellido materno del tutor" onkeypress="return soloLetras(event)" maxlength="255" required>
                                 </div>
                                 <div class="col">
                                     <label for="fechaNacimientoTutor">Fecha de Nacimiento:</label>
-                                    <input name="fechaNacimientoTutor" type="date" id="fechaTutor" class="form-control" id="fecha" >
+                                    <input name="fechaNacimientoTutor" type="date" id="fechaTutor" class="form-control" id="fecha" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <label for="telefonoTutor">Teléfono:</label>
-                                    <input type="tel" name="telefonoTutor" placeholder="Ingrese el número telefónico de su tutor" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" title="Ingrese solo números (máximo 10 dígitos)" >
+                                    <input type="tel" name="telefonoTutor" placeholder="Ingrese el número telefónico de su tutor" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" title="Ingrese solo números (máximo 10 dígitos)" required>
                                 </div>
                                 <div class="col">
                                     <label for="generoTutor">Género:</label>
-                                    <select id="generoTutor" name="generoTutor">
+                                    <select id="generoTutor" name="generoTutor" required>
                                         <option value="seleccione">Seleccione el género de su tutor</option>
                                         <option value="FEMENINO">Femenino</option>
                                         <option value="MASCULINO">Masculino</option>
@@ -166,7 +168,7 @@
 
                             <div class="row">
                                 <label for="parentesco">Parentesco:</label>
-                                <select id="parentesco" name="parentescoTutor">
+                                <select id="parentesco" name="parentescoTutor" required>
                                     <option value="seleccione">Seleccione el parentesco con el tutor</option>
                                     <option value="Madre">Madre</option>
                                     <option value="Padre">Padre</option>

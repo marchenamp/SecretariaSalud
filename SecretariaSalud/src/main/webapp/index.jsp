@@ -18,10 +18,10 @@
     <body>
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
             </div>
             <div class="title-container">
-                <h1>Expediente Clínico</h1>
+                <h1>Secretaría de Salud</h1>
             </div>
         </header>
         <div class="body-styles">
@@ -42,11 +42,13 @@
                 </h2>
                 <form action="IniciarSesion" method="post">
                     <label for="cedula">Cédula Profesional:</label>
-                    <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula profesional">
+                    <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula profesional" maxlength="8" required>
 
                     <div class="password-container">
                         <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" 
+                               pattern="(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ].*" 
+                               title="Debe tener al menos una mayúscula, una minúscula y un dígito" minlength="8" maxlength="20" required>
                         <img src="IMG/candado-cerrado.png" alt="Candado cerrado" id="candadoLogin" class="icon" onclick="mostrarPassword()">
                     </div>
 

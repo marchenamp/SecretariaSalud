@@ -25,8 +25,10 @@
     <body>
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
-                <h1>Expediente Clínico</h1>
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
+            </div>
+            <div class="title-container">
+                <h1>Secretaría de Salud</h1>
             </div>
         </header>
 

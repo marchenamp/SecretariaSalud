@@ -31,8 +31,10 @@
     <body>
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
-                <h1>Expediente Clínico</h1>
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
+            </div>
+            <div class="title-container">
+                <h1>Secretaría de Salud</h1>
             </div>
 
             <%
@@ -64,18 +66,18 @@
                         <div class="row">
                             <div class="col">
                                 <label for="antecedentesHereditarios">Antecedentes Hereditarios:</label>
-                                <textarea id="antecedentesHereditarios" placeholder="Ingrese los antecedentes hereditarios del paciente..." name="antecedentesHereditarios" rows="4" cols="50"></textarea>
+                                <textarea id="antecedentesHereditarios" placeholder="Ingrese los antecedentes hereditarios del paciente..." name="antecedentesHereditarios" rows="4" cols="50" required></textarea>
                             </div>
                             <div class="col">
                                 <label for="padecimientosPersonales">Padecimientos Personales:</label>
-                                <textarea id="padecimientosPersonales" placeholder="Ingrese los padecimientos personales del paciente..." name="padecimientosPersonales" rows="4" cols="50"></textarea>
+                                <textarea id="padecimientosPersonales" placeholder="Ingrese los padecimientos personales del paciente..." name="padecimientosPersonales" rows="4" cols="50" required></textarea>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <label for="tipoSangre">Tipo de Sangre:</label>
-                                <select id="tipoSangre" name="tipoSangre">
+                                <select id="tipoSangre" name="tipoSangre" required>
                                     <option value="seleccione">Seleccione el tipo de sangre</option>
                                     <option value="O-">O-</option>
                                     <option value="O+">O+</option>
@@ -89,7 +91,7 @@
                             </div>
                             <div class="col">
                                 <label for="alergias">Alergias:</label>
-                                <select id="alergias" name="alergias">
+                                <select id="alergias" name="alergias" required>
                                     <option value="seleccione">Seleccione</option>
                                     <option value="si">Sí</option>
                                     <option value="no">No</option>

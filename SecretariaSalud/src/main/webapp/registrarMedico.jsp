@@ -17,14 +17,16 @@
     </head>
 
     <body>
+        
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
             </div>
             <div class="title-container">
-                <h1>Expediente Clínico</h1>
+                <h1>Secretaría de Salud</h1>
             </div>
         </header>
+        
         <div class="body-styles">
             <div class="register-form">
                 <form action="ServletMedico" method="post">
@@ -51,14 +53,14 @@
                             </div>
                             <div class="col">
                                 <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                                <input name="fechaNacimientoMedico" type="date" id="fecha" class="form-control" id="fecha" required onchange="mostrarTutor()">
+                                <input name="fechaNacimientoMedico" type="date" id="fecha" class="form-control" id="fecha" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <label for="genero">Género:</label>
-                                <select id="genero" name="generoMedico">
+                                <select id="genero" name="generoMedico" required>
                                     <option value="seleccione">Seleccione su género</option>
                                     <option value="FEMENINO">Femenino</option>
                                     <option value="MASCULINO">Masculino</option>
@@ -74,7 +76,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="email">Correo Electrónico:</label>
-                                <input type="email" name="emailMedico" placeholder="Ingrese su correo electrónico" maxlength="255" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Debe coincidir con el formato de un correo electrónico." required>
+                                <input type="email" name="emailMedico" placeholder="Ingrese su correo electrónico" maxlength="255" required>
                             </div>
                             <div class="col">
                                 <label for="cedulaProfesional">Cédula Profesional:</label>

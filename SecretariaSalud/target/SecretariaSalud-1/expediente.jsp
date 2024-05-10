@@ -31,8 +31,10 @@
     <body>
         <header>
             <div class="logo-container">
-                <img src="IMG/2622355.png" alt="logo" class="logo">
-                <h1>Expediente Clínico</h1>
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
+            </div>
+            <div class="title-container">
+                <h1>Secretaría de Salud</h1>
             </div>
 
             <%
@@ -53,17 +55,17 @@
         </header>
 
         <h2 style="margin-top: 30px; margin-bottom: -30px">EXPEDIENTE</h2>
-        
+
         <div class="body-styles">
             <div class="register-form">
                 <form action="ServletExpediente" method="post">
-                    
+
                     <div class="botonesExp" style="margin-top: -15px; margin-bottom: 30px;">
                         <button style="background-color: #aeaeae; color: black; width: 200px;" id="regresar-btn" onclick="window.location.href = 'menuPaciente.jsp';">Regresar</button>
                         <button style="background-color: #aeaeae; color: black; width: 200px;" id="agregar-btn" onclick="window.location.href = 'archivos.jsp';" >Ver archivos</button>
                         <button style="background-color: #aeaeae; color: black; width: 200px;" id="agregar-btn" >Editar</button>
                     </div>
-                    
+
                     <div class="container">
                         <div class="row">
                             <div class="col">
