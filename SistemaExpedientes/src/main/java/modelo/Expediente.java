@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author march
@@ -20,6 +21,7 @@ public class Expediente {
     private String nombreContactoEmergencia;
     private String telefonoContactoEmergencia;
     private Paciente paciente;
+    private List<ArchivoAdjunto> archivosAdjuntos; // Lista de archivos adjuntos
 
     public Expediente(int id, String tipoSangre, String estatura, float peso, String alergias, String frecuenciaCardiaca, String padecimientoPersonales, String antecedentesHereditarios, String nombreContactoEmergencia, String telefonoContactoEmergencia, Paciente paciente) {
         this.id = id;
@@ -33,6 +35,7 @@ public class Expediente {
         this.nombreContactoEmergencia = nombreContactoEmergencia;
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
         this.paciente = paciente;
+        this.archivosAdjuntos = new ArrayList<>(); // Inicialización de la lista
     }
 
     public Expediente(String tipoSangre, String estatura, float peso, String alergias, String frecuenciaCardiaca, String padecimientoPersonales, String antecedentesHereditarios, String nombreContactoEmergencia, String telefonoContactoEmergencia, Paciente paciente) {
@@ -46,9 +49,10 @@ public class Expediente {
         this.nombreContactoEmergencia = nombreContactoEmergencia;
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
         this.paciente = paciente;
+        
     }
     
-        public Expediente(String tipoSangre, String estatura, float peso, String alergias, String frecuenciaCardiaca, String padecimientoPersonales, String antecedentesHereditarios, String nombreContactoEmergencia, String telefonoContactoEmergencia) {
+    public Expediente(String tipoSangre, String estatura, float peso, String alergias, String frecuenciaCardiaca, String padecimientoPersonales, String antecedentesHereditarios, String nombreContactoEmergencia, String telefonoContactoEmergencia) {
         this.tipoSangre = tipoSangre;
         this.estatura = estatura;
         this.peso = peso;
@@ -150,6 +154,18 @@ public class Expediente {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-    
-    
+    // Método para agregar un archivo adjunto
+    public void agregarArchivoAdjunto(ArchivoAdjunto archivoAdjunto) {
+        archivosAdjuntos.add(archivoAdjunto);
+    }
+
+    // Método para eliminar un archivo adjunto
+    public void eliminarArchivoAdjunto(ArchivoAdjunto archivoAdjunto) {
+        archivosAdjuntos.remove(archivoAdjunto);
+    }
+
+    // Método para recuperar todos los archivos adjuntos
+    public List<ArchivoAdjunto> getArchivosAdjuntos() {
+        return archivosAdjuntos;
+    }
 }

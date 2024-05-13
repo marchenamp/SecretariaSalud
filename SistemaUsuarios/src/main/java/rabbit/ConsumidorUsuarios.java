@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 import modelo.AccionMedico;
 import modelo.AccionPaciente;
-import modelo.Genero;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Tutor;
