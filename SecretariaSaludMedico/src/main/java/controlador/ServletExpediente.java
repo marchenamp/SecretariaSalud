@@ -53,70 +53,113 @@ public class ServletExpediente extends HttpServlet {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
-        String botonRegistrar = request.getParameter("RegistrarExpediente");
+        String botonEditar = request.getParameter("EditarExpediente");
+        String botonVerExpediente = request.getParameter("VerExpediente");
+        String botonVerEditarExpediente = request.getParameter("VerEditarExpediente");
 
-        String tipoSangre = request.getParameter("tipoSangre");
-        String estatura = request.getParameter("estatura");
-        float peso = Float.parseFloat(request.getParameter("peso"));
-        String alergias = request.getParameter("alergias");
-        String frecuenciaCardiaca = request.getParameter("frecuenciaCardiaca");
-        String padecimientosPersonales = request.getParameter("padecimientosPersonales");
-        String antecedentesHereditarios = request.getParameter("antecedentesHereditarios");
-        String nombreContactoEmergencia = request.getParameter("nombreContactoEmergencia");
-        String telefonoContactoEmergencia = request.getParameter("numeroContactoEmergencia");
-        String cadenaIdPaciente = request.getParameter("idPaciente");
-        cadenaIdPaciente = cadenaIdPaciente.trim();
-        cadenaIdPaciente = cadenaIdPaciente.replace("\n", "");
-        int idPaciente = Integer.parseInt(cadenaIdPaciente);
+        if (botonVerEditarExpediente != null) {
+            int idExpediente = Integer.parseInt(request.getParameter("idExpediente"));
+            ConsultasExpediente sqlExpediente = new ConsultasExpediente();
 
-        Expediente expediente = new Expediente(tipoSangre, estatura, peso, alergias, frecuenciaCardiaca, padecimientosPersonales, antecedentesHereditarios, nombreContactoEmergencia, telefonoContactoEmergencia);
+            Expediente expedienteEncontrado = sqlExpediente.buscarExpediente(idExpediente);
 
-        try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-            // Declara el intercambio si aún no existe
-            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
-
-            // Crear una cola temporal exclusiva para recibir la confirmación
-            String confirmationQueueName = channel.queueDeclare().getQueue();
-
-            AccionExpediente accionExpediente = null;
-
-            if (botonRegistrar != null) {
-
-                accionExpediente = new AccionExpediente("registrar", expediente, idPaciente);
-                
-            }
-
-            Gson serializer = new Gson();
-            String mensaje = serializer.toJson(accionExpediente);
-
-            // Configurar las propiedades del mensaje para recibir la confirmación
-            AMQP.BasicProperties props = new AMQP.BasicProperties.Builder()
-                    .replyTo(confirmationQueueName) // Establecer la cola de respuesta
-                    .correlationId("1") // ID de correlación para identificar la respuesta
-                    .build();
-
-            // Publica el mensaje en el intercambio
-            channel.basicPublish(EXCHANGE_NAME, "", props, mensaje.getBytes("UTF-8"));
-            System.out.println(" [x] Sent '" + mensaje + "'");
-
-            // Esperar hasta recibir la confirmación
-            boolean confirmed = false;
-            String confirmationMessage = null;
-            while (!confirmed) {
-                GetResponse responseConsumer = channel.basicGet(confirmationQueueName, true);
-                if (responseConsumer != null) {
-                    confirmationMessage = new String(responseConsumer.getBody(), "UTF-8");
-                    System.out.println(" [x] Received confirmation: " + confirmationMessage);
-                    confirmed = true;
-                }
-            }
-            if (confirmationMessage.equalsIgnoreCase("Exito")) {
-                request.setAttribute("txt-exito", "Registro de expediente exitoso");
+            if (expedienteEncontrado != null) {
+                request.setAttribute("expedienteEncontrado", expedienteEncontrado);
+                RequestDispatcher rd = request.getRequestDispatcher("editarExpediente.jsp");
+                rd.forward(request, response);
             } else {
-                request.setAttribute("txt-exito", "Registro de expediente fallido");
+                request.setAttribute("txt-advertencia", "No se encontró ningún expediente");
+                RequestDispatcher rd = request.getRequestDispatcher("expediente.jsp");
+                rd.forward(request, response);
             }
-            RequestDispatcher rd = request.getRequestDispatcher("registrarExpediente.jsp");
-            rd.forward(request, response);
+
+        }  else if (botonVerExpediente == null) {
+            String tipoSangre = request.getParameter("tipoSangre");
+            String estatura = request.getParameter("estatura");
+            float peso = Float.parseFloat(request.getParameter("peso"));
+            String alergias = request.getParameter("alergias");
+            String frecuenciaCardiaca = request.getParameter("frecuenciaCardiaca");
+            String padecimientosPersonales = request.getParameter("padecimientosPersonales");
+            String antecedentesHereditarios = request.getParameter("antecedentesHereditarios");
+            String nombreContactoEmergencia = request.getParameter("nombreContactoEmergencia");
+            String telefonoContactoEmergencia = request.getParameter("numeroContactoEmergencia");
+
+            Expediente expediente = null;
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                // Declara el intercambio si aún no existe
+                channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
+
+                // Crear una cola temporal exclusiva para recibir la confirmación
+                String confirmationQueueName = channel.queueDeclare().getQueue();
+
+                AccionExpediente accionExpediente = null;
+
+                if (botonEditar != null) {
+
+                    expediente = new Expediente();
+
+                    expediente.setId(Integer.parseInt(request.getParameter("idExpediente")));
+                    expediente.setAntecedentesHereditarios(antecedentesHereditarios);
+                    expediente.setPadecimientoPersonales(padecimientosPersonales);
+                    expediente.setAlergias(alergias);
+                    expediente.setEstatura(estatura);
+                    expediente.setPeso(peso);
+                    expediente.setFrecuenciaCardiaca(frecuenciaCardiaca);
+                    expediente.setTipoSangre(tipoSangre);
+
+                    accionExpediente = new AccionExpediente("editar", expediente);
+
+                }
+
+                Gson serializer = new Gson();
+                String mensaje = serializer.toJson(accionExpediente);
+
+                // Configurar las propiedades del mensaje para recibir la confirmación
+                AMQP.BasicProperties props = new AMQP.BasicProperties.Builder()
+                        .replyTo(confirmationQueueName) // Establecer la cola de respuesta
+                        .correlationId("1") // ID de correlación para identificar la respuesta
+                        .build();
+
+                // Publica el mensaje en el intercambio
+                channel.basicPublish(EXCHANGE_NAME, "", props, mensaje.getBytes("UTF-8"));
+                System.out.println(" [x] Sent '" + mensaje + "'");
+
+                // Esperar hasta recibir la confirmación
+                boolean confirmed = false;
+                String confirmationMessage = null;
+                while (!confirmed) {
+                    GetResponse responseConsumer = channel.basicGet(confirmationQueueName, true);
+                    if (responseConsumer != null) {
+                        confirmationMessage = new String(responseConsumer.getBody(), "UTF-8");
+                        System.out.println(" [x] Received confirmation: " + confirmationMessage);
+                        confirmed = true;
+                    }
+                }
+
+                if (confirmationMessage.equalsIgnoreCase("Exito")) {
+                    request.setAttribute("txt-exito", "Edición de expediente exitoso");
+                } else {
+                    request.setAttribute("txt-exito", "Edición de expediente fallido");
+                }
+                RequestDispatcher rd = request.getRequestDispatcher("expediente.jsp");
+                rd.forward(request, response);
+            }
+        } else {
+            int idExpediente = Integer.parseInt(request.getParameter("idExpediente"));
+            ConsultasExpediente sqlExpediente = new ConsultasExpediente();
+
+            Expediente expedienteEncontrado = sqlExpediente.buscarExpediente(idExpediente);
+
+            if (expedienteEncontrado != null) {
+                request.setAttribute("expedienteEncontrado", expedienteEncontrado);
+                RequestDispatcher rd = request.getRequestDispatcher("expediente.jsp");
+                rd.forward(request, response);
+            } else {
+                request.setAttribute("txt-advertencia", "No se encontró ningún expediente");
+                RequestDispatcher rd = request.getRequestDispatcher("expediente.jsp");
+                rd.forward(request, response);
+            }
         }
     }
 

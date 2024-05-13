@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession objSesion = request.getSession(false);
+    String medico = (String) objSesion.getAttribute("nombres");
+    String correo = (String) objSesion.getAttribute("correo");
+    String idMedico = (String) objSesion.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,8 +29,20 @@
             <div class="title-container">
                 <h1>Secretaría de Salud</h1>
             </div>
-        </header>
 
+            <div class="dropdown">
+                <button class="dropbtn" id="btnUsuario">
+                    <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
+                    <% out.println(correo); %>
+                </button>
+                <div class="dropdown-content">
+                    <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+
+        </header>
+        <h2>¡BIENVENIDO(A) <% out.println(medico);%>!</h2>
+        <br>
         <h2>MENÚ</h2>
         <div class="body-styles">
 

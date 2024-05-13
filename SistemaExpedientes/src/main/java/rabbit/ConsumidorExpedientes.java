@@ -57,9 +57,8 @@ public class ConsumidorExpedientes {
                     case "registrar":
                         confirmador = sqlExpediente.registrarExpediente(expediente.getTipoSangre(), expediente.getEstatura(), expediente.getPeso(), expediente.getAlergias(), expediente.getFrecuenciaCardiaca(), expediente.getPadecimientoPersonales(), expediente.getAntecedentesHereditarios(), expediente.getNombreContactoEmergencia(), expediente.getTelefonoContactoEmergencia(), accionExpediente.getIdPaciente());
                         break;
-
-                    case "actualizar":
-
+                    case "editar":
+                        confirmador = sqlExpediente.editarExpediente(expediente.getId(), expediente.getTipoSangre(), expediente.getEstatura(), expediente.getPeso(), expediente.getAlergias(), expediente.getFrecuenciaCardiaca(), expediente.getPadecimientoPersonales(), expediente.getAntecedentesHereditarios());
                         break;
                     case "eliminar":
 

@@ -20,6 +20,11 @@ public class AccionExpediente {
         this.idPaciente = idPaciente;
     }
 
+    public AccionExpediente(String accion, Expediente expediente) {
+        this.accion = accion;
+        this.expediente = expediente;
+    }
+    
     public AccionExpediente() {
     }
 

@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="controlador.ConsultasCita" %>
+<% ConsultasCita cc=new ConsultasCita(); %>
+<%
+    HttpSession objSesion = request.getSession(false);
+    String medico = (String) objSesion.getAttribute("nombres");
+    String correo = (String) objSesion.getAttribute("correo");
+    String idMedico = (String) objSesion.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,6 +31,17 @@
             <div class="title-container">
                 <h1>Secretaría de Salud</h1>
             </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn" id="btnUsuario">
+                    <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
+                    <% out.println(correo); %>
+                </button>
+                <div class="dropdown-content">
+                    <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+                
         </header>
 
         <div class="body-styles">
@@ -35,15 +54,11 @@
                             <th>Hora</th>
                             <th>Paciente</th>
                             <th>Motivo</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>28 Feb 2024</td>
-                            <td>15:00 Hrs</td>
-                            <td>Mario Gamboa</td>
-                            <td>Mareos recurrentes.</td>
-                        </tr>
+                        <%= cc.obtenerTablaMedicoCitas(Integer.parseInt(idMedico)) %>
                     </tbody>
                 </table>
             </div>    

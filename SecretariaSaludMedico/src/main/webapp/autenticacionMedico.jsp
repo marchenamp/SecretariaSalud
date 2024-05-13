@@ -5,6 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession objSesion = request.getSession(false);
+    String correo = (String) objSesion.getAttribute("correo");
+    String idExpediente = (String) objSesion.getAttribute("idExpedienteAut");
+%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,6 +28,17 @@
             <div class="title-container">
                 <h1>Secretaría de Salud</h1>
             </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn" id="btnUsuario">
+                    <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
+                    <% out.println(correo);%>
+                </button>
+                <div class="dropdown-content">
+                    <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+                
         </header>
         <div class="body-styles">
             <!-- Formulario de inicio de sesión -->
@@ -35,23 +51,15 @@
                     <br> - MÉDICO -
                 </h2>
 
-                <form action="expedientePaciente.jsp" method="POST" id="autenticacionForm">
-                    <input type="hidden" id="autenticado" name="autenticado" value="false" />
-                    <label for="password">Contraseña:</label>
-
-                    <div class="password-container">
-                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
-                        <img src="IMG/candado-cerrado.png" alt="Candado cerrado" id="candado" class="icon" onclick="mostrarPassword()">
-                    </div>
-
-
+                <form action="ServletExpediente" method="post" id="autenticacionForm">
+                    <p><%out.println(idExpediente);%></p>
+                    <input type="hidden" id="idExpediente" name="idExpediente" value="<%out.println(idExpediente);%>" >
                     <div class="button-container">
-                        <button type="submit" class="fingerprint-button" id="fingerprintButton">
+                        <button type="submit" name="VerExpediente" class="fingerprint-button" id="fingerprintButton">
                             <img src="IMG/huelladigital.png" alt="huella" class="huella" id="fingerprint-image" />
                             <img src="IMG/huellaverificada.png" alt="huella verificada" class="huella-verificada" />
                         </button>
                     </div>
-
                 </form>
                 <br>
             </div>
@@ -71,7 +79,7 @@
                 document.getElementById('fingerprint-image').src = 'IMG/huellaverificada.png';
                 alert("Autenticación exitosa.");
                 document.getElementById('autenticado').value = 'true';
-                document.getElementById('loginForm').submit(); // Enviar formulario
+                document.getElementById('autenticacionForm').submit(); // Enviar formulario
             }, 5000); // 5000 milisegundos = 5 segundos
         });
 
@@ -83,18 +91,7 @@
                 alert("Mantenga apretado por 5 segundos para iniciar sesión");
             }
         });
-        
-         function mostrarPassword() {
-            var cambio = document.getElementById("password");
-            var icono = document.getElementById("show_password");
-            if (cambio.type === "password") {
-                cambio.type = "text";
-                document.getElementById('candado').src = 'IMG/candado-abierto.png';
-            } else {
-                cambio.type = "password";
-                document.getElementById('candado').src = 'IMG/candado-cerrado.png';
-            }
-        }
+
     </script>
 
 </html>

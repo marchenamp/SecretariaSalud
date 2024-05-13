@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import modelo.Medico;
 import modelo.Paciente;
 
 /**
@@ -36,19 +37,20 @@ public class IniciarSesion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String correo = request.getParameter("correo");
+        String cedula = request.getParameter("cedula");
         String password = request.getParameter("password");
 
-        ConsultasPaciente sql = new ConsultasPaciente();
+        ConsultasMedico sql = new ConsultasMedico();
 
-        if (sql.autenticacion(correo, password)) {
-            Paciente paciente = sql.obtenerPacientePorCorreo(correo, password);
+        if (sql.autenticacion(cedula, password)) {
+            Medico medico = sql.buscarMedicoPorCedula(cedula);
             
             HttpSession objSesion;
             objSesion = request.getSession(true);
-            objSesion.setAttribute("correo", correo);
-            objSesion.setAttribute("id", String.valueOf(paciente.getId()));
-            response.sendRedirect("registrarExpediente.jsp");
+            objSesion.setAttribute("correo", medico.getCorreo());
+            objSesion.setAttribute("nombres", medico.getNombres());
+            objSesion.setAttribute("id", String.valueOf(medico.getId()));
+            response.sendRedirect("menuMedico.jsp");
         } else {
             request.setAttribute("txt-advertencia", "Credenciales incorrectas");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
