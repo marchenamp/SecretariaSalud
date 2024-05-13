@@ -4,6 +4,8 @@
     Author     : magda
 --%>
 
+<%@page import="modelo.Archivo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession objSesion=request.getSession(false);
@@ -70,7 +72,23 @@
                             <button id="ver-btn" onclick="window.location.href = 'menuPaciente.jsp';">Ver</button>
                         </td>
                     </tr>
+                    <%-- Aquí agregamos una sección para mostrar los archivos adjuntos --%>
+                    <%
+                        // Suponiendo que tienes una lista de archivos adjuntos asociados al expediente
+                        List<Archivo> archivos = (List<Archivo>) request.getAttribute("archivos");
+                        if (archivos != null) {
+                            for (Archivo archivo : archivos) {
+                    %>
+                    <tr>
+                        <td><%= archivo.getNombre()%></td>
+                        <td><%= archivo.getTipo()%></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
                 </tbody>
+
             </table>
         </div>
 

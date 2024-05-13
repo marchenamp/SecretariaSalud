@@ -33,6 +33,10 @@ public class Archivo {
         this.contenido = contenido;
         this.idExpediente = idExpediente;
     }
+
+    public Archivo(int idArchivo, int idExpediente, String nombreArchivo, String tipoArchivo, String rutaArchivo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public int getId() {
         return id;

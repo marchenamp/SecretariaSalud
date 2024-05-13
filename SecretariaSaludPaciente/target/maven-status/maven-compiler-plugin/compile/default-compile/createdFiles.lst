@@ -28,5 +28,6 @@ controlador\ConsultasCita.class
 controlador\IniciarSesion.class
 modelo\AccionCita.class
 modelo\Expediente.class
+controlador\ControladorAdjuntosServlet.class
 controlador\ServletCita.class
 controlador\LoginServlet.class

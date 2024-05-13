@@ -7,6 +7,7 @@ T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ConsultasExpediente.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\modelo\AccionExpediente.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\CallbackServlet.java
+T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\SubirArchivo.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\CerrarSesion.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\Conexion.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\modelo\Tutor.java
@@ -14,11 +15,13 @@ T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ConsultasMedico.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ConsultasPaciente.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\LogoutServlet.java
+T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\EliminarArchivo.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ConsultasTutor.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\modelo\Genero.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ServletPaciente.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\modelo\Expediente.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\modelo\AccionMedico.java
+T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\DescargarArchivo.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\LoginServlet.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\AuthenticationControllerProvider.java
 T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud\SecretariaSalud\src\main\java\controlador\ServletExpediente.java

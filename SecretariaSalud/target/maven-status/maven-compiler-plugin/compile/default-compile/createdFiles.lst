@@ -9,13 +9,16 @@ modelo\EstadoCivil.class
 modelo\Medico.class
 modelo\AccionExpediente.class
 modelo\Paciente.class
+controlador\EliminarArchivo.class
 modelo\Tutor.class
 controlador\AuthenticationControllerProvider.class
 secretariasalud\resources\JakartaEE10Resource.class
+controlador\DescargarArchivo.class
 controlador\ServletPaciente.class
 controlador\ConsultasPaciente.class
 controlador\ServletExpediente.class
 modelo\Genero.class
+controlador\SubirArchivo.class
 controlador\CerrarSesion.class
 controlador\ServletMedico.class
 controlador\CallbackServlet.class
