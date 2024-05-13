@@ -59,27 +59,22 @@
                 <caption><h3>Expedientes:</h3></caption>
                 <thead>
                     <tr>
+                        <th>ID - Expediente</th>
                         <th>Nombre</th>
                         <th>Tipo</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Rx Abdomen</td>
-                        <td>.jpg</td>
-                        <td class="celda-btn">
-                            <button id="ver-btn" onclick="window.location.href = 'menuPaciente.jsp';">Ver</button>
-                        </td>
-                    </tr>
                     <%-- Aquí agregamos una sección para mostrar los archivos adjuntos --%>
                     <%
-                        // Suponiendo que tienes una lista de archivos adjuntos asociados al expediente
+                        // Suponiendo que la lista de archivos adjuntos asociados al expediente no esta vacia
                         List<Archivo> archivos = (List<Archivo>) request.getAttribute("archivos");
                         if (archivos != null) {
                             for (Archivo archivo : archivos) {
                     %>
                     <tr>
+                        <td><%= archivo.getIdExpediente() %></td>
                         <td><%= archivo.getNombre()%></td>
                         <td><%= archivo.getTipo()%></td>
                     </tr>
@@ -106,25 +101,6 @@
         <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
     </footer>
 
-
-        <!-- Script para abrir la ventana emergente -->
-        <script>
-            function agregarExpediente() {
-                // Aquí puedes agregar el código para enviar el archivo al servidor
-                // Por ejemplo, puedes utilizar AJAX para enviar el archivo sin recargar la página
-                alert("Archivo agregado al expediente");
-                closeModal();
-            }
-
-            function closeModal() {
-                document.getElementById('fileModal').style.display = 'none';
-            }
-
-            function openFileWindow() {
-                // Abrir ventana emergente
-                var fileWindow = window.open('agregarArchivo.jsp', '_blank', 'width=750,height=400');
-            }
-        </script>
     </body>
 
 </html>

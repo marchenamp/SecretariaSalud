@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,14 +79,21 @@ public class ControladorAdjuntosServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
-        if ("subir".equals(accion)) {
-            subirAdjunto(request, response);
-        } else if ("descargar".equals(accion)) {
-            descargarAdjunto(request, response);
-        } else if ("eliminar".equals(accion)) {
-            eliminarAdjunto(request, response);
-        } else {
-            // Manejar acción desconocida
+        if (null == accion) {
+            processRequest(request, response);
+        } else switch (accion) {
+            case "subir":
+                subirAdjunto(request, response);
+                break;
+            case "descargar":
+                descargarAdjunto(request, response);
+                break;
+            case "eliminar":
+                eliminarAdjunto(request, response);
+                break;
+            default:
+                processRequest(request, response);
+                break;
         }
     }
     private void subirAdjunto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -92,17 +102,52 @@ public class ControladorAdjuntosServlet extends HttpServlet {
         String tipoAdjunto = obtenerTipoAdjunto(archivoPart);
 
         // Guardar el archivo en el servidor
-        String rutaGuardado = "/ruta/donde/guardar/adjuntos/";
+        String rutaGuardado = "files/";
         File archivoGuardado = new File(rutaGuardado + nombreAdjunto);
         try (InputStream inputStream = archivoPart.getInputStream()) {
             Files.copy(inputStream, archivoGuardado.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
 
-        // Aquí deberías almacenar el nombre del archivo, su tipo, la ruta de guardado y el ID del expediente en tu base de datos
+        // Obtener conexión a la base de datos
+        Connection conn = null;
+        try {
+            // Crear una instancia de la clase de conexión
+            Conexion conexion = new Conexion();
+            conn = conexion.getConexion();
 
-        // Redireccionar a la página de origen
-        response.sendRedirect("pagina-de-origen.jsp");
+            // Preparar la consulta SQL para insertar los datos del archivo adjunto
+            String sql = "INSERT INTO archivos_adjuntos (id_expediente, nombre_archivo, tipo_archivo, ruta_archivo) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(request.getParameter("idExpediente")));
+            stmt.setString(2, nombreAdjunto);
+            stmt.setString(3, tipoAdjunto);
+            stmt.setString(4, rutaGuardado + nombreAdjunto);
+
+            // Ejecutar la consulta SQL
+            stmt.executeUpdate();
+
+            // Cerrar el statement
+            stmt.close();
+        } catch (SQLException e) {
+            // Manejar excepciones SQL
+            e.printStackTrace();
+        } finally {
+            // Cerrar la conexión
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                // Manejar excepciones SQL
+                e.printStackTrace();
+            }
+        }
+
+        // Redireccionar a la página de archivos
+        response.sendRedirect("archivos.jsp");
     }
+
+
 
     private void descargarAdjunto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lógica para descargar un archivo adjunto
