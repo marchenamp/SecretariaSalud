@@ -11,8 +11,10 @@ modelo\EstadoCivil.class
 modelo\Medico.class
 modelo\AccionExpediente.class
 modelo\Paciente.class
+controlador\ConsultasArchivos.class
 modelo\Tutor.class
 controlador\AuthenticationControllerProvider.class
+controlador\ServletObtenerArchivo.class
 secretariasalud\resources\JakartaEE10Resource.class
 controlador\ServletPaciente.class
 controlador\ConsultasPaciente.class
@@ -25,9 +27,9 @@ controlador\CallbackServlet.class
 controlador\HomeServlet.class
 secretariasalud\JakartaRestConfiguration.class
 controlador\ConsultasCita.class
+modelo\AccionArchivo.class
 controlador\IniciarSesion.class
 modelo\AccionCita.class
 modelo\Expediente.class
-controlador\ControladorAdjuntosServlet.class
 controlador\ServletCita.class
 controlador\LoginServlet.class

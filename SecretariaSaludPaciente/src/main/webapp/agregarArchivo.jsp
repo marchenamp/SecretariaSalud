@@ -5,12 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="controlador.ConsultasExpediente"%>
+<%@page import="modelo.Expediente"%>
 <%
-    HttpSession objSesion=request.getSession(false);
-    String paciente=(String)objSesion.getAttribute("nombres");
-    if(paciente == null){
-        paciente = "";
-    }
+    HttpSession objSesion = request.getSession(false);
+    String paciente = (String) objSesion.getAttribute("nombres");
+    String correo = (String) objSesion.getAttribute("correo");
+    String idPaciente = (String) objSesion.getAttribute("id");
+    ConsultasExpediente sqlExpediente = new ConsultasExpediente();
+    Expediente expedienteEncontrado = sqlExpediente.buscarExpediente(Integer.parseInt(idPaciente));
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,58 +26,54 @@
     </head>
 
     <body>
+        <header>
+            <div class="logo-container">
+                <img src="IMG/logoSS.png" alt="logo" class="logoSS">
+            </div>
+            <div class="title-container">
+                <h1>Secretaría de Salud</h1>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn" id="btnUsuario">
+                    <i class="fa fa-user-circle" aria-hidden="true" id="icon"></i>
+                    <% out.println(correo);%>
+                </button>
+                <div class="dropdown-content">
+                    <a href="CerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+
+        </header>
+
         <div class="body-styles">
 
             <h2>Seleccionar archivo</h2>
+            <form action="ServletExpediente" method="post" enctype="multipart/form-data">
+                <input type="file" id="archivo" name="archivo" onchange="mostrarBotonEliminar()" required>
+                <input type="hidden" id="idExpediente" name="idExpediente" value="<%out.println(expedienteEncontrado.getId());%>" required>
+                <div class="botones">
+                    <button id="agregarArchivo-btn" name="AgregarArchivo">Agregar a expediente</button>
+                </div>
+            </form>
 
-            <input type="file" id="archivo" onchange="mostrarPrevisualizacion()">
-
-            <div class="botones">
-                <button id="eliminar-btn" onclick="eliminarArchivo()" style="display: none;">Eliminar archivo</button>
-                <button id="agregarArchivo-btn" onclick="agregarArchivo()">Agregar a expediente</button>
-            </div>
-
-            <div id="previsualizacion" style="margin-top: 20px;"></div>
+            <button id="eliminar-btn" style="display: none;" onclick="eliminarArchivo()">Quitar</button>
 
         </div>
 
+        <footer>
+            <img src="IMG/secretarialogo.png" alt="Logo secretaria de salud" class="logo-secretaria">
+        </footer>        
+
         <script>
-            let archivoSeleccionado = null;
-
-            function mostrarPrevisualizacion() {
-                const archivoInput = document.getElementById('archivo');
-                const archivos = archivoInput.files;
-
-                if (archivos.length > 0) {
-                    archivoSeleccionado = archivos[0];
-                    const reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        const previsualizacion = document.getElementById('previsualizacion');
-                        previsualizacion.innerHTML = `<img src="${e.target.result}" alt="Previsualización" style="max-width: 100%; max-height: 200px;">`;
-                        document.getElementById('eliminar-btn').style.display = 'inline'; // Muestra el botón de eliminar
-                    };
-
-                    reader.readAsDataURL(archivoSeleccionado);
-                }
+            function mostrarBotonEliminar() {
+                document.getElementById('eliminar-btn').style.display = 'inline'; // Muestra el botón de eliminar
             }
-
-            function agregarArchivo() {
-                if (archivoSeleccionado) {
-                    // código para enviar el archivo al servidor
-                    alert("Archivo agregado al expediente");
-                } else {
-                    alert("Por favor, seleccione un archivo primero.");
-                }
-            }
-
             function eliminarArchivo() {
-                archivoSeleccionado = null;
-                const previsualizacion = document.getElementById('previsualizacion');
-                previsualizacion.innerHTML = ''; // Elimina la previsualización
-                document.getElementById('archivo').value = ''; // Limpia el input de archivo
+                document.getElementById('archivo').value = ''; // Limpia el valor del input de archivo
                 document.getElementById('eliminar-btn').style.display = 'none'; // Oculta el botón de eliminar
             }
+
         </script>
 
     </body>

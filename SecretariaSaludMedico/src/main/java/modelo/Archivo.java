@@ -9,41 +9,22 @@ package modelo;
  * @author march
  */
 public class Archivo {
-
+    
     private int id;
+    private int idExpediente;
     private String nombre;
     private String tipo;
-    private byte[] contenido; // Para almacenar el contenido binario del archivo
-    private int idExpediente;
+    private byte[] contenido; 
+
+    public Archivo(int id, int idExpediente, String nombre, String tipo, byte[] contenido) {
+        this.id = id;
+        this.idExpediente = idExpediente;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.contenido = contenido;
+    }
 
     public Archivo() {
-    }
-
-    public Archivo(String nombre, String tipo, byte[] contenido, int idExpediente) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.contenido = contenido;
-        this.idExpediente = idExpediente;
-    }
-
-    public Archivo(int id, String nombre, String tipo, byte[] contenido, int idExpediente) {
-        this.id = id;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.contenido = contenido;
-        this.idExpediente = idExpediente;
-    }
-
-    public Archivo(int idArchivo, int idExpediente, String nombreArchivo, String tipoArchivo, String rutaArchivo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getIdExpediente() {
@@ -77,4 +58,13 @@ public class Archivo {
     public void setContenido(byte[] contenido) {
         this.contenido = contenido;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 }

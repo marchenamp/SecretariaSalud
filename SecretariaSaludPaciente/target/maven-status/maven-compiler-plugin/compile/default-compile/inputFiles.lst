@@ -1,33 +1,35 @@
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\AccionPaciente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\EstadoCivil.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Permiso.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\AccionCita.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\LogoutServlet.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\CallbackServlet.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ConsultasMedico.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\HomeServlet.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\LoginServlet.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ServletExpediente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\AuthenticationControllerProvider.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\secretariasalud\JakartaRestConfiguration.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\AccionMedico.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\CerrarSesion.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\Conexion.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ServletMedico.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ConsultasTutor.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Expediente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ConsultasCita.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Medico.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ControladorAdjuntosServlet.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Tutor.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Archivo.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ConsultasPaciente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\secretariasalud\resources\JakartaEE10Resource.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\AccionExpediente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ServletPaciente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ConsultasExpediente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\ServletCita.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Genero.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Paciente.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\modelo\Cita.java
-T:\Documentos\12voSemestre\sistemas distribuidos\SecretariaSalud-2\SecretariaSaludPaciente\src\main\java\controlador\IniciarSesion.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasTutor.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\LoginServlet.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ServletObtenerArchivo.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Tutor.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\AuthenticationControllerProvider.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\AccionPaciente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Paciente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\HomeServlet.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ServletCita.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ServletPaciente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\AccionExpediente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Permiso.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\CerrarSesion.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\IniciarSesion.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Expediente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\LogoutServlet.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Archivo.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasExpediente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\AccionMedico.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\secretariasalud\resources\JakartaEE10Resource.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasPaciente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Genero.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Medico.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\Conexion.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasMedico.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\AccionArchivo.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\EstadoCivil.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasArchivos.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\Cita.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ServletMedico.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\modelo\AccionCita.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\CallbackServlet.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ServletExpediente.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\controlador\ConsultasCita.java
+C:\Users\march\OneDrive\Documentos\NetBeansProjects\GitHub\SecretariaSalud\SecretariaSaludPaciente\src\main\java\secretariasalud\JakartaRestConfiguration.java
